@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="boyJared">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Python教程学习笔记（一） | Hexo
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hexo</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Python教程学习笔记（一）</h2>
+  <p class="post-date">2017-12-04</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Python为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。</p>
+<h3 id="Python的缺点"><a href="#Python的缺点" class="headerlink" title="Python的缺点"></a>Python的缺点</h3><ol>
+<li>运行速度慢</li>
+<li>代码不能加密</li>
+</ol>
+<h2 id="安装Python"><a href="#安装Python" class="headerlink" title="安装Python"></a>安装Python</h2><h3 id="Mac上安装"><a href="#Mac上安装" class="headerlink" title="Mac上安装"></a>Mac上安装</h3><p>安装Homebrew，直接通过命令<code>brew install python3</code> </p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>打开终端，输入命令<code>python3</code></p>
+<h3 id="Python解释器"><a href="#Python解释器" class="headerlink" title="Python解释器"></a>Python解释器</h3><p>当我们编写Python代码时，我们得到的是一个包含Python代码的以<code>.py</code>为扩展名的文本文件。要运行代码，就需要Python解释器去执行<code>.py</code>文件。<br>存在多种Python解释器。</p>
+<h4 id="CPython"><a href="#CPython" class="headerlink" title="CPython"></a>CPython</h4><p>官方的Python解释器，直接在终端运行python就是启动CPython解释器。这是使用最广的一种解释器。<br>CPython用<code>&gt;&gt;&gt;</code>作为提示符</p>
+<h4 id="IPython"><a href="#IPython" class="headerlink" title="IPython"></a>IPython</h4><p>IPython是基于CPython之上的一个交互型解释器，在交互方式上有所加强。<br>IPython用 <code>In[序号]:</code> 作为提示符</p>
+<blockquote>
+<p>其他的解释器还有PyPy，Jython，IronPython等  </p>
+</blockquote>
+<h2 id="第一个Python程序"><a href="#第一个Python程序" class="headerlink" title="第一个Python程序"></a>第一个Python程序</h2><h3 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h3><p>在命令行模式下，可以通过<code>python xx.py</code>直接运行<code>.py</code>文件</p>
+<h3 id="Python交互模式"><a href="#Python交互模式" class="headerlink" title="Python交互模式"></a>Python交互模式</h3><p>在终端输入<code>python3</code>即可进入Python交互模式<br>输入<code>exit()</code>即可退出<br>在Python交互模式下，可以直接输入代码，然后执行，并立刻得到结果</p>
+<h3 id="使用文本编辑器"><a href="#使用文本编辑器" class="headerlink" title="使用文本编辑器"></a>使用文本编辑器</h3><p>可以使用<code>Sublime</code>，但是不要使用Word和windows的记事本<br>windows的记事本会在文件开始的地方加上几个特殊字符（UTF-8 BOM），会导致程序运行错误</p>
+<h3 id="Mac下直接运行py文件"><a href="#Mac下直接运行py文件" class="headerlink" title="Mac下直接运行py文件"></a>Mac下直接运行py文件</h3><p>给所有人加上执行权限<br><code>chmod a+x xx.py</code></p>
+<p>执行文件<br><code>./xx.python</code></p>
+<h3 id="输入和输出"><a href="#输入和输出" class="headerlink" title="输入和输出"></a>输入和输出</h3><h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>输出字符串<br><code>print(&#39;hello, world&#39;)</code><br>也可以接受多个字符串，用逗号隔开<br><code>print(&#39;The quick brown&#39;, &#39;jumps over&#39;, &#39;the lazy dog&#39;)</code><br>针对上面这行命令，<code>print()</code>会一次打印每个字符串，遇到逗号会输出一个空格<br>也可以打印整数，或者计算结果<br><code>print(100)</code><br><code>print(100+200)</code></p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>使用<code>input</code><br><code>name = input()</code></p>
+<h2 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h2><p>以<code>#</code>开头的语句是注释<br>当语句以<code>:</code>结尾，缩进的语句视为代码块<br>缩进应该始终坚持使用4个空格，在文本编辑器中，需要设置把Tab自动转换为4个空格<br>Python是<strong>大小写敏感</strong>的。</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><p>Python可以处理任意大小的整数，包括负整数。<br>十六进制使用<code>0x</code>前缀</p>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>科学计数法，1.23*10^9就是<code>1.23e9</code></p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>以单引号<code>&#39;</code>或双引号<code>&quot;</code>括起来的任意文本<br>包含单引号或双引号的文本可用转义字符<code>\</code>来标识<br><code>&#39;I\&#39;m \&quot;OK\&quot;!&#39;</code><br>Python允许使用<code>r&#39;&#39;</code>表示<code>&#39;&#39;</code>内部的字符串默认不转义<br><code>print(r&#39;\\\t\\&#39;)</code><br>Python允许使用<code>&#39;&#39;&#39;...&#39;&#39;&#39;</code>的格式表示多行内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(```line1</span><br><span class="line">line2</span><br><span class="line">line3```)</span><br></pre></td></tr></table></figure>
+<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><p>只有 <code>True</code> 和 <code>False</code> 两种值<br>可以用 <code>and</code> 、 <code>or</code> 和 <code>not</code> 运算</p>
+<h3 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h3><p>是python里一个特殊的值，用 <code>None</code> 表示</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>同一个变量可以反复赋值，而且可以是不同类型的变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = 123</span><br><span class="line">a = &apos;ABC&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这种变量类型本身不固定的语言称之为<strong>动态语言</strong>，与之对应的是<strong>静态语言</strong></p>
+</blockquote>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;ABC&apos;</span><br><span class="line">b = a</span><br><span class="line">a = &apos;XYZ&apos;</span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure>
+<p>b的输出是<code>ABC</code></p>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>python中通常使用全部大写的变量名表示常量<br><code>PI = 3.1415926</code><br>但其实python没有任何机制保证PI不会被改变</p>
+<h3 id="Python中的除法"><a href="#Python中的除法" class="headerlink" title="Python中的除法"></a>Python中的除法</h3><p>使用<code>/</code>除法计算结果是浮点数，即使是两个整数恰好整除<br>使用<code>//</code>除法，两个整数除法结果仍然是整数，即使除不尽<br>余数运算<code>%</code></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>对变量赋值<code>x = y</code>是把变量<code>x</code>指向真正的对象，该对象是变量<code>y</code>所指向的。随后对变量<code>y</code>的赋值不影响变量<code>x</code>的指向。<br>python对整数没有大小限制<br>python对浮点数也没有大小限制，但是超出一定范围就直接表示为<code>inf</code>无限大</p>
+<h2 id="字符串和编码"><a href="#字符串和编码" class="headerlink" title="字符串和编码"></a>字符串和编码</h2><h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>字符串是一种数据类型，但字符串比较特殊的是还有一个编码问题。因为计算机只能处理数字，如果要处理文本，就必须先把文本转换为数字才能处理。<br>由于计算机是美国人发明的，因此，最早只有127个字符被编码到计算机里，也就是大小写英文字母、数字和一些符号，这个编码表被称为<code>ASCII</code>编码，比如大写字母<code>A</code>的编码是<code>65</code>，小写字母<code>z</code>的编码是<code>122</code>。<br>但是要处理中文显然一个字节是不够的，至少需要两个字节，而且还不能和<code>ASCII</code>编码冲突，所以，中国制定了<code>GB2312</code>编码，用来把中文编进去。<br>你可以想得到的是，全世界有上百种语言，日本把日文编到<code>Shift_JIS</code>里，韩国把韩文编到<code>Euc</code>-kr里，各国有各国的标准，就会不可避免地出现冲突，结果就是，在多语言混合的文本中，显示出来会有::乱码::。<br>因此，<code>Unicode</code>应运而生。<code>Unicode</code>把所有语言都统一到一套编码里，这样就不会再有乱码问题了。<br>新的问题又出现了：如果统一成<code>Unicode</code>编码，乱码问题从此消失了。但是，如果你写的文本基本上全部是英文的话，用<code>Unicode</code>编码比<code>ASCII</code>编码需要多一倍的存储空间，在存储和传输上就十分不划算。<br>所以，本着节约的精神，又出现了把<code>Unicode</code>编码转化为“可变长编码”的<code>UTF-8</code>编码。<code>UTF-8</code>编码把一个<code>Unicode</code>字符根据不同的数字大小编码成<code>1-6</code>个字节，常用的英文字母被编码成<code>1</code>个字节，汉字通常是<code>3</code>个字节，只有很生僻的字符才会被编码成<code>4-6</code>个字节。如果你要传输的文本包含大量英文字符，用<code>UTF-8</code>编码就能节省空间</p>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p>在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。<br>用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件</p>
+<h3 id="Python的字符串"><a href="#Python的字符串" class="headerlink" title="Python的字符串"></a>Python的字符串</h3><p>在最新的python3中，字符串是以Unicode编码的。也就是说，Python的字符串支持多语言。<br>使用<code>ord()</code>函数获取字符的整数表示<br>使用<code>chr()</code>函数把编码转换为对应的字符<br>以<code>Unicode</code>表示的<code>str</code>通过<code>encode()</code>方法可以编码为指定的<code>bytes</code>，因为python中给的字符串类型是<code>str</code>，在网络中传输或者保存到磁盘上就需要编程以字节位单位的<code>bytes</code><br>要把<code>bytes</code>变为<code>str</code>，就需要用<code>decode()</code>方法<br>要知道<code>str</code>中包含多少个字符，可以用<code>len()</code>函数<br>如果换成<code>bytes</code>，<code>len()</code>函数就计算字节数<br>::为了避免乱码问题，应当始终坚持使用UTF-8编码对str和bytes进行转换。::<br>由于Python源代码也是一个文本文件，所以，当你的源代码中包含中文的时候，在保存源代码时，就需要务必指定保存为UTF-8编码。当Python解释器读取源代码时，为了让它按UTF-8编码读取，我们通常在文件开头写上这两行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br></pre></td></tr></table></figure>
+<p>第一行注释是为了告诉Linux/OS X系统，这是一个Python可执行程序，Windows系统会忽略这个注释；<br>第二行注释是为了告诉Python解释器，按照UTF-8编码读取源代码，否则，你在源代码中写的中文输出可能会有乱码；<br>申明了UTF-8编码并不意味着你的.py文件就是UTF-8编码的，必须并且要确保文本编辑器正在使用UTF-8 without BOM编码：</p>
+<h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><p><code>%</code> 运算符是用来格式化字符串的。<code>%s</code>表示用字符串替换，<code>%d</code>表示用整数替换，<code>%f</code>表示用浮点数替换，<code>%x</code>表示用十六进制整数替换；<br><code>&#39;Hi, %s, you have %d.&#39; % (&#39;Michael&#39;, 10000)</code><br>浮点数还可以指定小数的位数<br><code>print(&#39;%.2f&#39; % 3.1415926)</code><br>如果你不太确定应该用什么，<code>%s</code>永远起作用，它会把任何数据类型转换为字符串</p>
+<h4 id="format"><a href="#format" class="headerlink" title="format()"></a>format()</h4><p>另一种格式化字符串的方法是使用字符串的<code>format()</code>方法，它会用传入的参数依次替换字符串内的占位符<code>{0}</code>、<code>{1}</code><br><code>&#39;Hello, {0}, 成绩提升了 {1:.1f}%&#39;.format(&#39;小明&#39;, 17.125)</code></p>
+<h2 id="使用list和tuple"><a href="#使用list和tuple" class="headerlink" title="使用list和tuple"></a>使用list和tuple</h2><h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><ul>
+<li>类似于高级语言中的数组<ul>
+<li><code>classmates = [&#39;Michael&#39;, &#39;Bob&#39;, &#39;Tracy&#39;]</code></li>
+</ul>
+</li>
+<li>用<code>len()</code>函数可以获得list元素的个数<ul>
+<li><code>len(classmates)</code></li>
+</ul>
+</li>
+<li>用索引来访问list中每一个位置的元素<ul>
+<li><code>classmates[0]</code></li>
+</ul>
+</li>
+<li>直接获取最后一个元素<ul>
+<li><code>classmates[-1]</code>，以此类推可以获取倒数第2个、倒数第3个</li>
+</ul>
+</li>
+<li>往list中追加元素到末尾<ul>
+<li><code>classmates.append(&#39;Adam&#39;)</code></li>
+</ul>
+</li>
+<li>把元素插入到指定的位置<ul>
+<li><code>classmates.insert(1, &#39;Jack&#39;)</code></li>
+</ul>
+</li>
+<li>删除list末尾的元素，用<code>pop()</code>方法<ul>
+<li><code>classmates.pop()</code></li>
+</ul>
+</li>
+<li>删除指定位置的元素<ul>
+<li><code>classmates.pop(1)</code></li>
+</ul>
+</li>
+<li>替换元素，直接赋值索引位置<ul>
+<li><code>classmates[1] = &#39;Sarah&#39;</code></li>
+</ul>
+</li>
+<li>list里面的数据类型也可以不同，当然里面的元素也可以是另一个list，可以看成一个多维数组<ul>
+<li><code>L = [&#39;Apple&#39;, 123, True]</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h3><ul>
+<li>和list非常类似，但是tuple一旦初始化就不能修改<ul>
+<li><code>classmates = (&#39;Michael&#39;, &#39;Bob&#39;, &#39;Tracy&#39;)</code></li>
+<li>这个tuole不能变了，没有<code>append()</code>,<code>insert()</code>这样的方法</li>
+</ul>
+</li>
+<li>当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，比如：<ul>
+<li><code>t = (1, 2)</code></li>
+</ul>
+</li>
+<li>只有1个元素的tuple定义时必须加一个逗号<ul>
+<li><code>t = (1,)</code></li>
+</ul>
+</li>
+<li>tuple所谓的“不变”是说，tuple的每个元素，指向永远不变</li>
+</ul>
+<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><ul>
+<li><code>if</code>语句完整形式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if &lt;条件判断1&gt;:</span><br><span class="line">    &lt;执行1&gt;</span><br><span class="line">elif &lt;条件判断2&gt;:</span><br><span class="line">    &lt;执行2&gt;</span><br><span class="line">elif &lt;条件判断3&gt;:</span><br><span class="line">    &lt;执行3&gt;</span><br><span class="line">else:</span><br><span class="line">    &lt;执行4&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>if</code>判断条件还可以简写，比如写：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if x:</span><br><span class="line">    print(&apos;True&apos;)</span><br></pre></td></tr></table></figure>
+<p>只要<code>x</code>是非零数值、非空字符串、非空list等，就判断为<code>True</code>，否则为<code>False</code>。</p>
+<h3 id="再议input"><a href="#再议input" class="headerlink" title="再议input"></a>再议input</h3><p><code>input()</code>返回的数据类型是<code>str</code>，可用<code>int()</code>函数完成转换</p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><h3 id="for…in循环"><a href="#for…in循环" class="headerlink" title="for…in循环"></a>for…in循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum = 0</span><br><span class="line">for x in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:</span><br><span class="line">    sum = sum + x</span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure>
+<p><code>range()</code>函数可提供生成一个整数序列，<code>range(5)</code>生成的序列是从0开始小于5的整数</p>
+<h3 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sum = 0</span><br><span class="line">n = 99</span><br><span class="line">while n &gt; 0:</span><br><span class="line">    sum = sum + n</span><br><span class="line">    n = n - 2</span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure>
+<h2 id="使用dict和set"><a href="#使用dict和set" class="headerlink" title="使用dict和set"></a>使用dict和set</h2><h3 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h3><ul>
+<li>在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。<ul>
+<li><code>d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85}</code></li>
+<li><code>d[&#39;Adam&#39;] = 67</code></li>
+</ul>
+</li>
+<li>要避免key不存在的错误，有两种办法，一是通过in判断key是否存在<ul>
+<li><code>&#39;Thomas&#39; in d</code></li>
+</ul>
+</li>
+<li>二是通过dict提供的<code>get()</code>方法，如果<code>key</code>不存在，可以返回<code>None</code>，或者自己指定的<code>value</code><ul>
+<li><code>d.get(&#39;Thomas&#39;)</code></li>
+<li><code>d.get(&#39;Thomas&#39;, -1)</code></li>
+</ul>
+</li>
+<li>要删除一个<code>key</code>，用<code>pop(key)</code>方法，对应的value也会从dict中删除</li>
+</ul>
+<h4 id="dict的特点"><a href="#dict的特点" class="headerlink" title="dict的特点"></a>dict的特点</h4><ol>
+<li>查找和插入的速度极快，不会随着key的增加而变慢；</li>
+<li>需要占用大量的内存，内存浪费多。</li>
+</ol>
+<h4 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h4><ul>
+<li>dict是用空间来换取时间的一种方法</li>
+<li>dict的key必须是<strong>不可变对象</strong></li>
+</ul>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><ul>
+<li>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key</li>
+<li>要创建一个set，需要提供一个list作为输入集合<ul>
+<li><code>s = set([1, 2, 3])</code></li>
+</ul>
+</li>
+<li>重复的元素会在set中自动被过滤</li>
+<li>通过<code>add(key)</code>方法可以添加元素到set中</li>
+<li>通过<code>remove(key)</code>方法可以删除元素</li>
+<li>set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作<ul>
+<li><code>s1 &amp; s2</code></li>
+<li><code>s1 | s2</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="小结-3"><a href="#小结-3" class="headerlink" title="小结"></a>小结</h4><p>set和dict的唯一区别仅在于没有存储对应的value，但是，set的原理和dict一样，所以，同样不可以放入可变对象；</p>
+<h3 id="再议不可变对象"><a href="#再议不可变对象" class="headerlink" title="再议不可变对象"></a>再议不可变对象</h3><p>str是不可变对象，list是可变对象<br>对于不变对象来说，调用对象自身的任意方法，也不会改变该对象自身的内容。相反，这些方法会创建新的对象并返回，这样，就保证了不可变对象本身永远是不可变的。</p>
+<blockquote>
+<p>参考文章：<a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="noopener">Python教程 - 廖雪峰的官方网站</a></p>
+</blockquote>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Python" >
+    <span class="tag-code">Python</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#简介"><span class="toc-nav-text">简介</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Python的缺点"><span class="toc-nav-text">Python的缺点</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装Python"><span class="toc-nav-text">安装Python</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Mac上安装"><span class="toc-nav-text">Mac上安装</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行"><span class="toc-nav-text">运行</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Python解释器"><span class="toc-nav-text">Python解释器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#CPython"><span class="toc-nav-text">CPython</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#IPython"><span class="toc-nav-text">IPython</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第一个Python程序"><span class="toc-nav-text">第一个Python程序</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#命令行模式"><span class="toc-nav-text">命令行模式</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Python交互模式"><span class="toc-nav-text">Python交互模式</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用文本编辑器"><span class="toc-nav-text">使用文本编辑器</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Mac下直接运行py文件"><span class="toc-nav-text">Mac下直接运行py文件</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#输入和输出"><span class="toc-nav-text">输入和输出</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#输出"><span class="toc-nav-text">输出</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#输入"><span class="toc-nav-text">输入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Python基础"><span class="toc-nav-text">Python基础</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#数据类型"><span class="toc-nav-text">数据类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#整数"><span class="toc-nav-text">整数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#浮点数"><span class="toc-nav-text">浮点数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#字符串"><span class="toc-nav-text">字符串</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#布尔值"><span class="toc-nav-text">布尔值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#空值"><span class="toc-nav-text">空值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#变量"><span class="toc-nav-text">变量</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例子"><span class="toc-nav-text">例子</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#常量"><span class="toc-nav-text">常量</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Python中的除法"><span class="toc-nav-text">Python中的除法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#小结"><span class="toc-nav-text">小结</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#字符串和编码"><span class="toc-nav-text">字符串和编码</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#字符编码"><span class="toc-nav-text">字符编码</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#小结-1"><span class="toc-nav-text">小结</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Python的字符串"><span class="toc-nav-text">Python的字符串</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#格式化"><span class="toc-nav-text">格式化</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#format"><span class="toc-nav-text">format()</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用list和tuple"><span class="toc-nav-text">使用list和tuple</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#list"><span class="toc-nav-text">list</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#tuple"><span class="toc-nav-text">tuple</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#条件判断"><span class="toc-nav-text">条件判断</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#再议input"><span class="toc-nav-text">再议input</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#循环"><span class="toc-nav-text">循环</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#for…in循环"><span class="toc-nav-text">for…in循环</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#while循环"><span class="toc-nav-text">while循环</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用dict和set"><span class="toc-nav-text">使用dict和set</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#dict"><span class="toc-nav-text">dict</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#dict的特点"><span class="toc-nav-text">dict的特点</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#小结-2"><span class="toc-nav-text">小结</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#set"><span class="toc-nav-text">set</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#小结-3"><span class="toc-nav-text">小结</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#再议不可变对象"><span class="toc-nav-text">再议不可变对象</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/12/04/Python教程学习笔记（一）/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "boyjared";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Python教程学习笔记（一）",
+        owner: "boyjared",
+        repo: "boyjared.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
