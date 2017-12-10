@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="boyJared">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Python字符串常用操作 | Hexo
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hexo</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Python字符串常用操作</h2>
+  <p class="post-date">2017-12-10</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>下面操作所使用的<code>name</code>的值如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name=<span class="string">'jupyter notebook'</span></span><br><span class="line">name</span><br></pre></td></tr></table></figure>
+<h1 id="大小写相关"><a href="#大小写相关" class="headerlink" title="大小写相关"></a>大小写相关</h1><h2 id="capitalize"><a href="#capitalize" class="headerlink" title="capitalize()"></a>capitalize()</h2><p>这一行首字母转换为大写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(name)</span><br><span class="line">print(name.capitalize())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br><span class="line">Jupyter notebook</span><br></pre></td></tr></table></figure>
+<h2 id="title"><a href="#title" class="headerlink" title="title()"></a>title()</h2><p>所有单词的首字母都大写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(name.title())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jupyter Notebook</span><br></pre></td></tr></table></figure>
+<h2 id="casefold"><a href="#casefold" class="headerlink" title="casefold()"></a>casefold()</h2><p>全部转换为小写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"BOOK"</span>.casefold())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">book</span><br></pre></td></tr></table></figure>
+<h2 id="lower"><a href="#lower" class="headerlink" title="lower()"></a>lower()</h2><p>全部转换为小写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"BOY"</span>.lower())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boy</span><br></pre></td></tr></table></figure>
+<h2 id="upper"><a href="#upper" class="headerlink" title="upper()"></a>upper()</h2><p>全部转换为大写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"boy"</span>.upper())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BOY</span><br></pre></td></tr></table></figure>
+<h2 id="swapcase"><a href="#swapcase" class="headerlink" title="swapcase()"></a>swapcase()</h2><p>把大写转小写，小写转大写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Jared Chen"</span>.swapcase())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jARED cHEN</span><br></pre></td></tr></table></figure>
+<h2 id="istitle"><a href="#istitle" class="headerlink" title="istitle()"></a>istitle()</h2><p>判断首字母是否全部为大写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Jared Chen"</span>.istitle())</span><br><span class="line">print(<span class="string">"Jared chen"</span>.istitle())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">True</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<h2 id="isupper"><a href="#isupper" class="headerlink" title="isupper()"></a>isupper()</h2><p>判断是否全部大写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"JARED CHEN"</span>.isupper())</span><br><span class="line">print(<span class="string">"JARED CHENa"</span>.isupper())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">True</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<h1 id="查找相关"><a href="#查找相关" class="headerlink" title="查找相关"></a>查找相关</h1><h2 id="find"><a href="#find" class="headerlink" title="find()"></a>find()</h2><p>查找字符串中包含的指定字符，并返回字符串中最左边的指定字符的下标</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(name.find(<span class="string">'up'</span>))</span><br><span class="line">print(name[name.find(<span class="string">'up'</span>):])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">upyter notebook</span><br></pre></td></tr></table></figure>
+<h2 id="rfind"><a href="#rfind" class="headerlink" title="rfind()"></a>rfind()</h2><p>从左往右数，找到最右边那个值的下标</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"jared chen"</span>.rfind(<span class="string">'e'</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8</span><br></pre></td></tr></table></figure>
+<h1 id="判断相关"><a href="#判断相关" class="headerlink" title="判断相关"></a>判断相关</h1><h2 id="isalnum"><a href="#isalnum" class="headerlink" title="isalnum()"></a>isalnum()</h2><p>判断字符串中是不是同时包含字母和数字，如果同时包含了字母和数字，而且没有包含其它空格和任何特殊字符那么就返回True</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'123aBc'</span>.isalnum())</span><br><span class="line">print(<span class="string">'.123aBc'</span>.isalnum())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">True</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<h2 id="isalpha"><a href="#isalpha" class="headerlink" title="isalpha()"></a>isalpha()</h2><p>判断字符串中是不是只有英文字母，如果只有英文字母而其没有其它数字、空格和任何特殊字符，就返回True</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'123aBc'</span>.isalpha())</span><br><span class="line">print(<span class="string">'aBc'</span>.isalpha())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">False</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<h2 id="isdecimal"><a href="#isdecimal" class="headerlink" title="isdecimal()"></a>isdecimal()</h2><p>判断是否为十进制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"123"</span>.isdecimal())</span><br><span class="line">print(<span class="string">"0x123"</span>.isdecimal())</span><br><span class="line">print(<span class="string">"abc"</span>.isdecimal())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">True</span><br><span class="line">False</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<h2 id="isdigit"><a href="#isdigit" class="headerlink" title="isdigit()"></a>isdigit()</h2><p>判断是否为整数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"123"</span>.isdigit())</span><br><span class="line">print(<span class="string">"123.2"</span>.isdigit())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">True</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<h2 id="isnumeric"><a href="#isnumeric" class="headerlink" title="isnumeric()"></a>isnumeric()</h2><p>判断是否只包含数字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"123.2"</span>.isnumeric())</span><br><span class="line">print(<span class="string">"123"</span>.isnumeric())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">False</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<h2 id="isspace"><a href="#isspace" class="headerlink" title="isspace()"></a>isspace()</h2><p>判断字符串是否为空格</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"12 34"</span>.isspace())</span><br><span class="line">print(<span class="string">" "</span>.isspace())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">False</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<h2 id="endswith"><a href="#endswith" class="headerlink" title="endswith()"></a>endswith()</h2><p>判断字符串是否以指定字符结尾，如果是，就返回True</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(name.endswith(<span class="string">"an"</span>))</span><br><span class="line">print(name.endswith(<span class="string">"ok"</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">False</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<h2 id="startswith"><a href="#startswith" class="headerlink" title="startswith()"></a>startswith()</h2><p>判断字符串是否以指定字符开始，如果是，就返回True</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(name.startswith(<span class="string">"an"</span>))</span><br><span class="line">print(name.startswith(<span class="string">"ju"</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">False</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<h1 id="打印格式相关"><a href="#打印格式相关" class="headerlink" title="打印格式相关"></a>打印格式相关</h1><h2 id="format"><a href="#format" class="headerlink" title="format()"></a>format()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">"my \tname is &#123;name&#125;, age is &#123;age&#125;."</span></span><br><span class="line">name</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;my \tname is &#123;name&#125;, age is &#123;age&#125;.&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(name.format(age=<span class="number">22</span>, name=<span class="string">"jared"</span>))</span><br><span class="line">print(name.format_map(&#123;<span class="string">'age'</span>:<span class="number">22</span>, <span class="string">'name'</span>:<span class="string">'jared'</span>&#125;))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my 	name is jared, age is 22.</span><br><span class="line">my 	name is jared, age is 22.</span><br></pre></td></tr></table></figure>
+<h2 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list = [<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>]</span><br><span class="line">print(<span class="string">"+"</span>.join(list))</span><br><span class="line">print(<span class="string">" "</span>.join(list))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1+2+3+4+5</span><br><span class="line">1 2 3 4 5</span><br></pre></td></tr></table></figure>
+<h2 id="ljust"><a href="#ljust" class="headerlink" title="ljust()"></a>ljust()</h2><p>打印100个字符，不够的话右边的全部用指定字符来填补，这里用*</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(name.ljust(<span class="number">100</span>,<span class="string">"*"</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my 	name is &#123;name&#125;, age is &#123;age&#125;.*******************************************************************</span><br></pre></td></tr></table></figure>
+<h2 id="rjust"><a href="#rjust" class="headerlink" title="rjust()"></a>rjust()</h2><p>打印100个字符，不够的话左边的全部用指定字符来填补，这里用*</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(name.rjust(<span class="number">100</span>,<span class="string">"*"</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*******************************************************************my 	name is &#123;name&#125;, age is &#123;age&#125;.</span><br></pre></td></tr></table></figure>
+<h2 id="center"><a href="#center" class="headerlink" title="center()"></a>center()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(name.center(<span class="number">50</span>,<span class="string">'-'</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--------my 	name is &#123;name&#125;, age is &#123;age&#125;.---------</span><br></pre></td></tr></table></figure>
+<h1 id="替换相关"><a href="#替换相关" class="headerlink" title="替换相关"></a>替换相关</h1><h2 id="expandtabs"><a href="#expandtabs" class="headerlink" title="expandtabs()"></a>expandtabs()</h2><p>把字符串中的tab转换成多个空格，这里转换成了30个空格</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">"jupyter\tnotebook"</span></span><br><span class="line">print(name.expandtabs(<span class="number">30</span>))</span><br><span class="line">print(name.expandtabs(tabsize=<span class="number">30</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jupyter                       notebook</span><br><span class="line">jupyter                       notebook</span><br></pre></td></tr></table></figure>
+<h2 id="replace"><a href="#replace" class="headerlink" title="replace()"></a>replace()</h2><p>替换字符串中的指定字符，可以指定替换次数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"jared chen"</span>.replace(<span class="string">'e'</span>,<span class="string">'E'</span>,<span class="number">1</span>))</span><br><span class="line">print(<span class="string">"jared chen"</span>.replace(<span class="string">'e'</span>,<span class="string">'E'</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jarEd chen</span><br><span class="line">jarEd chEn</span><br></pre></td></tr></table></figure>
+<h1 id="其他常用操作"><a href="#其他常用操作" class="headerlink" title="其他常用操作"></a>其他常用操作</h1><h2 id="split"><a href="#split" class="headerlink" title="split()"></a>split()</h2><p>把字符串按照指定字符分成一个列表，默认以空格分割成一个列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"jared+chen+"</span>.split(<span class="string">"+"</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&apos;jared&apos;, &apos;chen&apos;, &apos;&apos;]</span><br></pre></td></tr></table></figure>
+<h2 id="splitlines"><a href="#splitlines" class="headerlink" title="splitlines()"></a>splitlines()</h2><p>按照换行符，把字符串分割成一个列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"boy\njared\n"</span>.splitlines())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&apos;boy&apos;, &apos;jared&apos;]</span><br></pre></td></tr></table></figure>
+<h2 id="lstrip"><a href="#lstrip" class="headerlink" title="lstrip()"></a>lstrip()</h2><p>去除左边的换行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"\n1 23\n"</span>.lstrip())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 23</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h2 id="rstrip"><a href="#rstrip" class="headerlink" title="rstrip()"></a>rstrip()</h2><p>去除右边的换行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"\n1 23\n"</span>.rstrip())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 23</span><br></pre></td></tr></table></figure>
+<h2 id="strip"><a href="#strip" class="headerlink" title="strip()"></a>strip()</h2><p>去除两边的换行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"\n1 23\n"</span>.strip())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 23</span><br></pre></td></tr></table></figure>
+<h2 id="count"><a href="#count" class="headerlink" title="count()"></a>count()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(name.count(<span class="string">'o'</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<h2 id="encode"><a href="#encode" class="headerlink" title="encode()"></a>encode()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(name.encode())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b&apos;jupyter\tnotebook&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="打印python目前的编码模式"><a href="#打印python目前的编码模式" class="headerlink" title="打印python目前的编码模式"></a>打印python目前的编码模式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">print(sys.getdefaultencoding())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">utf-8</span><br></pre></td></tr></table></figure>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Python" >
+    <span class="tag-code">Python</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#大小写相关"><span class="toc-nav-text">大小写相关</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#capitalize"><span class="toc-nav-text">capitalize()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#title"><span class="toc-nav-text">title()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#casefold"><span class="toc-nav-text">casefold()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#lower"><span class="toc-nav-text">lower()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#upper"><span class="toc-nav-text">upper()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#swapcase"><span class="toc-nav-text">swapcase()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#istitle"><span class="toc-nav-text">istitle()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isupper"><span class="toc-nav-text">isupper()</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#查找相关"><span class="toc-nav-text">查找相关</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#find"><span class="toc-nav-text">find()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rfind"><span class="toc-nav-text">rfind()</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#判断相关"><span class="toc-nav-text">判断相关</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isalnum"><span class="toc-nav-text">isalnum()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isalpha"><span class="toc-nav-text">isalpha()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isdecimal"><span class="toc-nav-text">isdecimal()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isdigit"><span class="toc-nav-text">isdigit()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isnumeric"><span class="toc-nav-text">isnumeric()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#isspace"><span class="toc-nav-text">isspace()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#endswith"><span class="toc-nav-text">endswith()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#startswith"><span class="toc-nav-text">startswith()</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#打印格式相关"><span class="toc-nav-text">打印格式相关</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#format"><span class="toc-nav-text">format()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#join"><span class="toc-nav-text">join()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ljust"><span class="toc-nav-text">ljust()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rjust"><span class="toc-nav-text">rjust()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#center"><span class="toc-nav-text">center()</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#替换相关"><span class="toc-nav-text">替换相关</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#expandtabs"><span class="toc-nav-text">expandtabs()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#replace"><span class="toc-nav-text">replace()</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#其他常用操作"><span class="toc-nav-text">其他常用操作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#split"><span class="toc-nav-text">split()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#splitlines"><span class="toc-nav-text">splitlines()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#lstrip"><span class="toc-nav-text">lstrip()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rstrip"><span class="toc-nav-text">rstrip()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#strip"><span class="toc-nav-text">strip()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#count"><span class="toc-nav-text">count()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#encode"><span class="toc-nav-text">encode()</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#打印python目前的编码模式"><span class="toc-nav-text">打印python目前的编码模式</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/12/10/Python字符串常用操作/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "boyjared";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Python字符串常用操作",
+        owner: "boyjared",
+        repo: "boyjared.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
