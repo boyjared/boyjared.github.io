@@ -10,7 +10,7 @@
   
   <title>
     
-      Tags | Hexo
+      Hexo
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -112,86 +112,55 @@
 </header>
 
     <div id="article-banner">
-  <h2>Tags</h2>
-  <p class="post-date">标签检索</p>
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
 </div>
-<main class="app-body">
-  <div id="tag-cloud">
+<main class="app-body" id="archives">
+  
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2017
+  </h1>
+  <div class="section-list">
     
-      <a class="tag2" data-name="tag-Python">Python</a>
     
-      <a class="tag0" data-name="tag-计算机网络">计算机网络</a>
+      <div class="section-list-item">
+        <a href="/2017/12/21/Network-Chapter1/" class="archive-title">（读书笔记）网络是怎样连接的——浏览器生成消息</a>
+        <p class="archive-date">12-21</p>
+      </div>
     
-      <a class="tag2" data-name="tag-推荐系统">推荐系统</a>
+      <div class="section-list-item">
+        <a href="/2017/12/12/LearningPython-2-Python-Function/" class="archive-title">Python学习笔记（二）函数</a>
+        <p class="archive-date">12-12</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/12/10/Python-String/" class="archive-title">Python字符串常用操作</a>
+        <p class="archive-date">12-10</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/12/08/User-CF/" class="archive-title">基于用户的协同过滤算法的理解与简单实现</a>
+        <p class="archive-date">12-08</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/12/04/LearningPython-1-Python-Basic/" class="archive-title">Python学习笔记（一）Python基础</a>
+        <p class="archive-date">12-04</p>
+      </div>
     
   </div>
+</section>
   
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-Python">Python</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2017/12/12/LearningPython-2-Python-Function/">Python学习笔记（二）函数</a>
-          </li>
-        </ul>
-        
-        <ul class="tag-preview">
-          <li>
-            <a href="/2017/12/04/LearningPython-1-Python-Basic/">Python学习笔记（一）Python基础</a>
-          </li>
-        </ul>
-        
-        <ul class="tag-preview">
-          <li>
-            <a href="/2017/12/10/Python-String/">Python字符串常用操作</a>
-          </li>
-        </ul>
-        
-        <ul class="tag-preview">
-          <li>
-            <a href="/2017/12/08/User-CF/">基于用户的协同过滤算法的理解与简单实现</a>
-          </li>
-        </ul>
-        
-    </div>
-    
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-计算机网络">计算机网络</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2017/12/21/Network-Chapter1/">（读书笔记）网络是怎样连接的——浏览器生成消息</a>
-          </li>
-        </ul>
-        
-    </div>
-    
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-推荐系统">推荐系统</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2017/12/08/User-CF/">基于用户的协同过滤算法的理解与简单实现</a>
-          </li>
-        </ul>
-        
-    </div>
-    
 </main>
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/tags/index.html'
-    $('#article-banner').geopattern(url)
-    $('.header').removeClass('fixed-header')
-
-    var tag = location.hash.replace('#', '')
-    if (tag) {
-      var tagId = "#tag-" + tag;
-      $("html, body").animate({
-        scrollTop: $(tagId).offset().top 
-      }, 400)
-    }
+    var url = 'http://yoursite.com/tags/计算机网络/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
   })();
 </script>
     <div class="scroll-top">

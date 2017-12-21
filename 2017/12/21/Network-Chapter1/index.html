@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      （读书笔记）网络是怎样连接的——浏览器生成消息 | Hexo
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hexo</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>（读书笔记）网络是怎样连接的——浏览器生成消息</h2>
+  <p class="post-date">2017-12-21</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>本次探索之旅从用户在浏览器中输入网址（URL）开始。</p>
+<h3 id="生成HTTP请求消息"><a href="#生成HTTP请求消息" class="headerlink" title="生成HTTP请求消息"></a>生成HTTP请求消息</h3><p>浏览器的工作会从对用户输入的网址进行解析开始。<strong>浏览器如何解析网址是我们的第一个看点。</strong>然后浏览器会根据网址的含义来生成请求消息，而<strong>请求消息实际的样子就是我们的第二个看点</strong>。</p>
+<h3 id="向DNS服务器查询Web服务器的IP地址"><a href="#向DNS服务器查询Web服务器的IP地址" class="headerlink" title="向DNS服务器查询Web服务器的IP地址"></a>向DNS服务器查询Web服务器的IP地址</h3><p>浏览器如何进行这一操作也是看点之一</p>
+<h3 id="全世界DNS服务器的大接力"><a href="#全世界DNS服务器的大接力" class="headerlink" title="全世界DNS服务器的大接力"></a>全世界DNS服务器的大接力</h3><p>全世界共有上万台的DNS服务器，它们相互借力才能完成IP地址的查询，而它们进行接力的方法也是本章看点之一。</p>
+<h3 id="委托协议栈发送消息"><a href="#委托协议栈发送消息" class="headerlink" title="委托协议栈发送消息"></a>委托协议栈发送消息</h3><p>查询到IP地址之后，浏览器就可以将消息委托给操作系统发送给Web服务器了，但这个委托到底是如何完成的呢？这也是本章的看点之一。</p>
+<h2 id="生成HTTP请求消息-1"><a href="#生成HTTP请求消息-1" class="headerlink" title="生成HTTP请求消息"></a>生成HTTP请求消息</h2><h3 id="探索之旅从输入网址开始"><a href="#探索之旅从输入网址开始" class="headerlink" title="探索之旅从输入网址开始"></a>探索之旅从输入网址开始</h3><p>URL的各种格式<br><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/01URL%E7%9A%84%E5%90%84%E7%A7%8D%E6%A0%BC%E5%BC%8F.png" alt="URL的各种格式"><br>尽管URL有各种不同的写法，但它们有一个共同点，那就是URL开头的文字，即<code>http:</code>, <code>ftp:</code>, <code>file:</code>, <code>mailto:</code>，这部分文字表示<strong>浏览器应当使用的访问方法</strong>。我们可以把这部分理解为访问时使用的<strong>协议类型</strong>。</p>
+<h3 id="浏览器先要解析URL"><a href="#浏览器先要解析URL" class="headerlink" title="浏览器先要解析URL"></a>浏览器先要解析URL</h3><p>Web浏览器解析URL的过程<br><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/02Web%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90URL%E7%9A%84%E8%BF%87%E7%A8%8B.png" alt="Web浏览器解析URL的过程"></p>
+<h3 id="省略文件名的情况"><a href="#省略文件名的情况" class="headerlink" title="省略文件名的情况"></a>省略文件名的情况</h3><p><code>http://www.lab.glasscom.com/dir/</code><br>对于上面这个URL我们可以这样理解，以<code>/</code>结尾代表<code>/dir/</code>后面本来应该有的文件名被省略了。这种情况下会访问事先设定好的默认文件，大多数情况下是<code>index.html</code>或者<code>default.htm</code>之类的文件名。因此，对于这个例子，服务器就会访问<code>/dir/index.html</code>或者<code>/dir/default.htm</code>。<br>还有一些URL是像下面这样只有Web服务器的域名的，这也是一种省略了文件名的形式。<br><code>http://www.lab.glasscom.com/</code><br>这个URL也是以<code>/</code>结尾的，也就是说它表示访问一个名叫<code>/</code>的目录，由于省略了文件名，所以结果就是访问<code>/index.html</code>或者<code>/default.htm</code>这样的文件。<br>那么，下面这个URL又是什么意思呢？<br><code>http://www.lab.glasscom.com</code><br>这次连结尾的<code>/</code>都省略了。像这样连目录名都省略时，就会访问根目录下事先设置的默认文件。<br>但下面这个例子就更诡异了<br><code>http://www.lab.glasscom.com/whatisthis</code><br>这种情况一般会按照下面的惯例进行处理：如果Web服务器上存在名为<code>whatisthis</code>的文件，则将<code>whatisthis</code>作为文件名来处理；如果存在<code>whatisthis</code>的目录，则将<code>whatisthis</code>作为目录名来处理。因为我们无法创建两个名字相同的文件和目录。</p>
+<blockquote>
+<p>浏览器的第一步工作就是对URL进行解析。  </p>
+</blockquote>
+<h3 id="HTTP的基本思路"><a href="#HTTP的基本思路" class="headerlink" title="HTTP的基本思路"></a>HTTP的基本思路</h3><p><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/03HTTP%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png" alt="HTTP的基本思路"><br>HTTP请求消息中包含的内容是<strong>对什么</strong>和<strong>进行怎样的操作</strong>两个部分，其中“对什么”的部分称为<code>URI</code>。一般来说，URI的内容是一个存放网页数据的文件名或者是一个CGI程序。“进行怎样的操作”的部分称为方法，方法表示需要让Web服务器完成怎样的工作，常用方法包括<code>GET</code>和<code>POST</code>等。<br>除此之外，HTTP消息中还有一些用来表示附加信息的<strong>头字段</strong>。客户端向Web服务器发送数据时，会先发送头字段，然后再发送数据。<br>在收到请求消息后，Web服务器会根据这些要求来完成自己的工作，然后将结果存放在响应消息中。在响应消息的开头有一个<strong>状态码</strong>，状态码后面就是<strong>头字段</strong>和<strong>网页数据</strong>。<br>响应消息会被发送回客户端，客户端收到之后，浏览器会从消息中读出所需的数据并显示在屏幕上。到这里，HTTP的整个工作就完成了。</p>
+<h4 id="生成HTTP请求消息-2"><a href="#生成HTTP请求消息-2" class="headerlink" title="生成HTTP请求消息"></a>生成HTTP请求消息</h4><p>对URL进行解析之后，浏览器确定了Web服务器和文件名，接下来就是根据这些信息来<strong>生成HTTP请求消息</strong>了。<br>HTTP消息的格式<br><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/04HTTP%E6%B6%88%E6%81%AF%E7%9A%84%E6%A0%BC%E5%BC%8F.png" alt="HTTP消息的格式"></p>
+<blockquote>
+<p>一条请求消息中只能写一个URI。如果需要获取多个文件，必须对每个文件单独发送1条请求。  </p>
+</blockquote>
+<h2 id="向DNS服务器查询Web服务器的IP地址-1"><a href="#向DNS服务器查询Web服务器的IP地址-1" class="headerlink" title="向DNS服务器查询Web服务器的IP地址"></a>向DNS服务器查询Web服务器的IP地址</h2><h3 id="Socket库提供查询IP地址的功能"><a href="#Socket库提供查询IP地址的功能" class="headerlink" title="Socket库提供查询IP地址的功能"></a>Socket库提供查询IP地址的功能</h3><p>我们的计算机上有相应的DNS客户端，而相当于<strong>DNS客户端</strong>的部分称为<strong>DNS解析器</strong>。通过DNS查询IP地址的操作称为<strong>域名解析</strong>。<br><strong>解析器</strong>实际上是一段程序，它包含在操作系统的<strong>Socket库</strong>中。<strong>Socket库</strong>包含的程序组件可以让其他的应用程序调用操作系统的网络功能，而解析器就是这个库中的其中一种程序组件。</p>
+<blockquote>
+<p>Socket库是用于调用网络功能的程序组件集合。  </p>
+</blockquote>
+<h3 id="通过解析器向DNS服务器发出查询"><a href="#通过解析器向DNS服务器发出查询" class="headerlink" title="通过解析器向DNS服务器发出查询"></a>通过解析器向DNS服务器发出查询</h3><p>解析器的用法非常简单，只要像下图一样写上解析器的程序名称<code>gethostbyname</code>以及Web服务器的域名<code>www.lab.glasscom.com</code>就可以了，这样就完成了对解析器的调用。<br><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/05%E8%A7%A3%E6%9E%90%E5%99%A8%E7%9A%84%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95.png" alt="解析器的调用方法"><br>调用解析器后，解析器会向DNS服务器发送查询消息，然后DNS服务器会返回响应消息。响应消息中包含查询到的IP地址，解析器会取出IP地址，并将其写入浏览器指定的内存地址中。</p>
+<blockquote>
+<p>根据域名查询IP地址时，浏览器会使用Socket库中的解析器。  </p>
+</blockquote>
+<h3 id="解析器的内部原理"><a href="#解析器的内部原理" class="headerlink" title="解析器的内部原理"></a>解析器的内部原理</h3><p>当浏览器调用解析器时，程序的控制流程就会转移到解析器的内部。解析器会根据DNS的规格，生成一条表示“请告诉我www.lab.glasscom.com的IP地址”的数据，并将它发送给DNS服务器。<br><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/06%E8%A7%A3%E6%9E%90%E5%99%A8%E7%9A%84%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86.png" alt="解析器的内部原理"></p>
+<blockquote>
+<p>HTTP消息是用文本编写的，但DNS消息是使用二进制数据编写的。 </p>
+</blockquote>
+<p>发送消息这个操作不是由解析器本身来执行，<strong>而是要委托给操作系统内部的协议栈来执行</strong>。这是因为和浏览器一样，解析器本身也不具备使用网络收发数据的功能。解析器调用协议栈后，控制流程会再次转移，协议栈会执行发送消息的操作，然后<strong>通过网卡将消息发送给DNS服务器</strong>。<br>向DNS服务器发送消息时，我们当然也需要知道DNS服务器的IP地址。只不过这个IP地址是作为TCP/IP的一个设置项目事先设置好的，不需要再去查询了。Windows的设置如下图所示。<br><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/07DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%AE%BE%E7%BD%AE.png" alt="DNS服务器的设置"></p>
+<h2 id="全世界DNS服务器的大接力-1"><a href="#全世界DNS服务器的大接力-1" class="headerlink" title="全世界DNS服务器的大接力"></a>全世界DNS服务器的大接力</h2><h3 id="DNS服务器的基本工作"><a href="#DNS服务器的基本工作" class="headerlink" title="DNS服务器的基本工作"></a>DNS服务器的基本工作</h3><p>DNS服务器的基本工作就是接收来自客户端的查询消息，然后根据消息的内容返回响应。来自客户端的查询消息包含以下三种信息：<strong>域名</strong>、<strong>Class</strong>以及<strong>记录类型</strong>。<br>DNS服务器上事先保存有前面这三种信息对应的记录数据，DNS服务器就是根据这些记录查找符合查询请求的内容并对客户端作出相应的。<br><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/08DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C.png" alt="DNS服务器的基本工作"><br>查询IP地址时我们使用<code>A</code>这个记录类型，查询邮件服务器时我们要使用<code>MX</code>类型。当记录类型为<code>MX</code>时，DNS服务器会在记录中保存两种信息，分别是<strong>邮件服务器的域名</strong>和<strong>优先级</strong>。</p>
+<blockquote>
+<p>DNS服务器会从域名与IP地址的对照表中查找相应的记录，并返回IP地址。  </p>
+</blockquote>
+<h3 id="域名的层次结构"><a href="#域名的层次结构" class="headerlink" title="域名的层次结构"></a>域名的层次结构</h3><p>互联网中存在着不计其数的服务器，将这些服务器的信息全部保存在一台DNS服务器中是不可能的，因此一定会出现<strong>DNS服务器中找不到要查询的信息的情况</strong>。<br>直接说答案的话很简单，就是将信息分布保存在多台DNS服务器中，这些DNS服务器相互接力配合，从而查找出要查询的信息。但这个机制其实有点复杂。<br>首先，DNS服务器中的所有信息都是按照域名以分层次的结构来保存的。<br><strong>一个域的信息是作为一个整体存放在DNS服务器中的，不能将一个域拆开来存放在多台DNS服务器中</strong>。但一台DNS服务器中可以存放多个域的信息。</p>
+<h3 id="寻找相应的DNS服务器并获取IP地址"><a href="#寻找相应的DNS服务器并获取IP地址" class="headerlink" title="寻找相应的DNS服务器并获取IP地址"></a>寻找相应的DNS服务器并获取IP地址</h3><p>这里的关键在于<strong>如何找到我们要访问的Web服务器的信息归哪一台DNS服务器管</strong>。我们可以采用下面发的方法。<br>将负责管理下级域的DNS服务器的IP地址注册到它们的上级DNS服务器中，然后上级DNS服务器的IP地址再注册到更上一级的DNS服务器中。也就是说，负责管理<code>lab.glasscom.com</code>这个域的DNS服务器的IP地址需要注册到<code>glasscom.com</code>的DNS服务器中，而<code>glasscom.com</code>域的DNS服务器的IP地址又需要注册到<code>com</code>域的DNS服务器中。<br>这样，我们就可以通过上级DNS服务器查询出下级DNS服务器的IP地址，也就可以向下级DNS服务器发送查询请求了。<br>在互联网中，<code>com</code>和<code>jp</code>这类域名上面还有一级<code>域</code>，称为<strong>根域</strong>。根域在一般书写域名时经常被忽略，一般在域名的最后加上一个句号<code>www.lab.glasscom.com.</code>，这个<code>.</code>就代表根域。根域的服务器中保管者<code>com</code>、<code>jp</code>的DNS服务器的信息。由于上级DNS服务器保管者所有下级DNS服务器的信息，所以我们可以从根域开始一路往下找到任意一个域的DNS服务器。除此之外，我们还需要将根域的DNS服务器信息保存在互联网中所有的DNS服务器中。分配给根域DNS服务器的IP地址在全世界仅有13个，而且这些地址几乎不发生变化，因此将这些地址保存在所有的DNS服务器中也不是一件难事。<br>我们用一张图来看一下这个过程是如何进行的。<br><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/09%E6%89%BE%E5%88%B0%E7%9B%AE%E6%A0%87DNS%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt="找到目标DNS服务器"></p>
+<h3 id="通过缓存加快DNS服务器的响应"><a href="#通过缓存加快DNS服务器的响应" class="headerlink" title="通过缓存加快DNS服务器的响应"></a>通过缓存加快DNS服务器的响应</h3><p>有时候并不需要从最上级的根域开始查找，因为DNS服务器有一个缓存功能，可以记住之前查询过的域名。如果要查询的域名和相关信息已经在缓存中，那么就可以直接返回响应，缓存可以减少查询所需的时间。<br>由于信息被缓存后，原本的注册信息可能会发生改变，这时缓存中的信息就有可能是不正确的。因此，DNS服务器中保存的信息都设置一个有效期，当缓存中的信息超过有效期后，数据就会从缓存中被删除。</p>
+<h2 id="委托协议栈发送消息-1"><a href="#委托协议栈发送消息-1" class="headerlink" title="委托协议栈发送消息"></a>委托协议栈发送消息</h2><h3 id="数据收发操作概览"><a href="#数据收发操作概览" class="headerlink" title="数据收发操作概览"></a>数据收发操作概览</h3><p>知道了IP地址之后，就可以委托操作系统内部的协议栈向这个目标IP地址，也就是我们要访问的Web服务器发送消息了。<br>和向DNS服务器查询IP地址的操作一样，这里也需要使用Socket库中的程序组件。不过，查询IP地址只需要调用一个程序组件就可以了，而这里需要按照指定的顺序<strong>调用多个程序组件</strong>。</p>
+<blockquote>
+<p>向操作系统内部的协议栈发出委托时，需要按照指定的顺序来调用Socket库中的程序组件。</p>
+</blockquote>
+<p>使用Socket库来收发数据的操作过程如下图所示。简单来说，收发数据的两台计算机之间连接了一条数据通道，数据沿着这条通道流动，最终到达目的地。<br><img src="http://oudjglwl8.bkt.clouddn.com/network/chapter1/10%E6%95%B0%E6%8D%AE%E9%80%9A%E8%BF%87%E7%B1%BB%E4%BC%BC%E7%AE%A1%E9%81%93%E7%9A%84%E7%BB%93%E6%9E%84%E6%9D%A5%E6%B5%81%E5%8A%A8.png" alt="数据通过类似管道的结构来流动"><br>这条管道并不是一开始就有的，在进行收发数据操作之前，双方需要先建立起这条管道。建立管道的关键在于管道两端的<strong>数据出入口</strong>，这些出入口称为<strong>套接字</strong>。我们需要先创建套接字，然后再将套接字连接起来形成管道。<strong>服务器程序一般会在启动后就创建好套接字并等待客户端连接管道</strong>。管道在连接时是由客户端发起的，但在断开时可以由客户端或服务器任意一方发起。其中一方断开后，另一方也会随之断开，当管道断开后，<strong>套接字也会被删除</strong>。到此为止，通信操作就结束了。<br>综上所述，收发数据的操作分为若干个阶段，可以大致总结为以下4个。</p>
+<ol>
+<li>创建套接字（创建套接字阶段）</li>
+<li>将管道连接到服务器端的套接字上（连接阶段）</li>
+<li>收发数据（通信阶段）</li>
+<li>断开管道并删除套接字（断开阶段）<br>在每个阶段，Socket库中的程序组件都会被调用来执行相关的数据收发操作。这四个操作都是由<strong>操作系统中的协议栈</strong>来执行的，是由浏览器委托。<strong>这些委托操作都是通过调用Socket库中的程序组件来执行的</strong>，但这些数据通信用的程序组件其实仅仅充当了一个桥梁的作用，并不执行任何实质性的操作，应用程序的委托内容最终会被原原本本地传递给协议栈。因此后文会将Socket库和协议栈看成一个整体来讲解。</li>
+</ol>
+<blockquote>
+<p>当调用Socket库中的程序组件时，应用程序所指定的参数会通过Socket库的程序组件传递给协议栈，并由协议栈来实际执行相应的操作。</p>
+</blockquote>
+<p>下面我们来探索一下应用程序（浏览器）委托收发数据的过程。这个过程的关键点是<strong>按照一定的顺序调用Socket库中的若干个程序组件</strong>。</p>
+<h3 id="创建套接字阶段"><a href="#创建套接字阶段" class="headerlink" title="创建套接字阶段"></a>创建套接字阶段</h3><p>客户端创建套接字的操作非常简单，只要调用Socket库中的<code>socket</code>程序组件就可以了。和调用解析器一样，调用<code>socket</code>之后，控制流程会转移到socket内部并执行创建套接字的操作。<br>套接字创建完成后，协议栈会返回一个<strong>描述符</strong>，应用程序会将收到的描述符放在内存中。描述符是用来识别不同的套接字的，因为实际上计算机中会同时进行多个数据的通信操作，有多个数据收发操作在进行，也就需要创建多个不同的套接字，描述符就是帮助我们来识别出特定的套接字的方法。</p>
+<blockquote>
+<p>应用程序是通过“描述符”这一类似号码牌的东西来识别套接字的。  </p>
+</blockquote>
+<h3 id="连接阶段：把管道接上去"><a href="#连接阶段：把管道接上去" class="headerlink" title="连接阶段：把管道接上去"></a>连接阶段：把管道接上去</h3><p>接下来我们需要委托协议栈将客户端创建的套接字与服务器那边的套接字连接起来。应用程序通过调用Socket库中的名为<code>connect</code>的程序组件来完成这一操作。当调用connect时，需要指定<strong>描述符</strong>、<strong>服务器IP地址</strong>和<strong>端口号</strong>这三个参数。<br>这里解释一下端口号，通过IP地址我们能识别出网络上的某台计算机。但连接操作的对象是某个具体的套接字，而通过端口号我们可以明确识别出某台具体的计算机上的某个具体的套接字。<br>如果说描述符是用来在一台计算机内部识别套接字的机制，那么端口号就是用来让通信的另一方能够识别出套接字的机制。<br>但网址上好像并没有端口号？也不能像IP地址一样去问DNS服务器，那怎么办？<br>其实服务器上所使用的端口号是根据应用的种类实现规定好的，比如Web是80号端口，电子邮件是25号端口。只要制定了实现规定好的端口号，就可以链接到相应的服务器程序的套接字。<br>而客户端自己在创建套接字时，协议栈会为这个套接字随便分配一个端口号。接下来，当协议栈执行连接操作时，会将这个随便分配的端口号通知给服务器。<br>总结：<br>当调用connect后，协议栈就会执行连接操作。当连接成功后，协议栈会将对方的IP地址和端口号等信息保存在套接字中，这样就可以开始收发数据了。</p>
+<blockquote>
+<p><strong>描述符</strong>：应用程序用来识别套接字的机制<br><strong>IP地址和端口号</strong>：客户端和服务器之间用来识别对方套接字的机制  </p>
+</blockquote>
+<h3 id="通信阶段：传递消息"><a href="#通信阶段：传递消息" class="headerlink" title="通信阶段：传递消息"></a>通信阶段：传递消息</h3><p>只要将数据送入套接字，数据就会被发送到对方的套接字中。这个操作需要Socket库中的<code>wirte</code> 程序组件来完成。应用程序需要在内存中准备好要发送的数据，在这个具体例子里，根据用户输入的网址生成的HTTP请求消息就是我们要发送的数据。<br>当消息返回后，需要执行的是接收消息的操作。接收消息的操作是通过Socket库中的<code>read</code>程序组件委托协议栈来完成的。调用read时需要制定用于存放接收到的响应消息的内存地址，这一内存地址称为<strong>接收缓冲区</strong>。</p>
+<h3 id="断开阶段：收发数据结束"><a href="#断开阶段：收发数据结束" class="headerlink" title="断开阶段：收发数据结束"></a>断开阶段：收发数据结束</h3><p>当浏览器收到数据之后，收发数据的过程就结束了。我们需要调用Socket库的<code>close</code>程序组件进入断开阶段。最终，连接在套接字之间的管道会被断开，套接字本身也会被删除。<br>断开的过程如下。Web使用的HTTP协议规定，当Web服务器发送完响应消息之后，应该<strong>主动执行断开操作</strong>。<br>这就是HTTP的工作过程，HTTP协议将HTML文档和图片都作为单独的对象来处理。因此，如果一个网页中包含很多张图片，就必须重复进行很多次连接、收发数据、断开的操作。重复连接和断开显然是效率很低的。因此后来人们又设计出了能够在一次连接中收发多个请求和相应的方法，在HTTP版本1.1中就可以使用这种方法。在这种情况下，当所有数据都请求完成后，浏览器会主动触发断开连接的操作。</p>
+<h2 id="专业名词"><a href="#专业名词" class="headerlink" title="专业名词"></a>专业名词</h2><h4 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h4><ul>
+<li>Uniform Resource Locator，统一资源定位符</li>
+</ul>
+<h4 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h4><ul>
+<li>File Transfer Protocol，文件传送协议</li>
+<li>这是一种在上传、下载文件时使用的协议。使用FTP协议来传送文件的程序也被叫做FTP。 </li>
+</ul>
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><ul>
+<li>Hypertext Transfer Protocol，超文本传送协议</li>
+</ul>
+<h4 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h4><ul>
+<li>Uniform Resource Identifier，统一资源标识符 </li>
+</ul>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><ul>
+<li>Domain Name System，域名服务系统</li>
+<li>将服务器名称和IP地址进行关联是DNS最常见的用法。但DNS的功能并不仅限于此，它还可以将邮件地址和邮件服务器进行关联，以及为各种信息关联相应的名称</li>
+</ul>
+<h4 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h4><p>表示程序组件的名称</p>
+<h4 id="Socket库"><a href="#Socket库" class="headerlink" title="Socket库"></a>Socket库</h4><ul>
+<li>Socket库是用于调用网络功能的程序组件集合</li>
+</ul>
+<h4 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h4><ul>
+<li>表示管道两端的接口</li>
+</ul>
+<h4 id="协议栈"><a href="#协议栈" class="headerlink" title="协议栈"></a>协议栈</h4><ul>
+<li>操作系统内部的网络控制软件，也叫“<strong>协议驱动</strong>”“<strong>TCP/IP驱动</strong>”等。</li>
+</ul>
+<h4 id="邮件服务器优先级"><a href="#邮件服务器优先级" class="headerlink" title="邮件服务器优先级"></a>邮件服务器优先级</h4><ul>
+<li>当一个邮件地址对应多个邮件服务器时，需要根据优先级来判断哪个邮件服务器是优先的。<strong>优先级数值较小的邮件服务器代表更优先</strong></li>
+</ul>
+<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><ul>
+<li>User Datagram Protocol，用户数据报协议</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#计算机网络" >
+    <span class="tag-code">计算机网络</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#概览"><span class="toc-nav-text">概览</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#生成HTTP请求消息"><span class="toc-nav-text">生成HTTP请求消息</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#向DNS服务器查询Web服务器的IP地址"><span class="toc-nav-text">向DNS服务器查询Web服务器的IP地址</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#全世界DNS服务器的大接力"><span class="toc-nav-text">全世界DNS服务器的大接力</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#委托协议栈发送消息"><span class="toc-nav-text">委托协议栈发送消息</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#生成HTTP请求消息-1"><span class="toc-nav-text">生成HTTP请求消息</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#探索之旅从输入网址开始"><span class="toc-nav-text">探索之旅从输入网址开始</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#浏览器先要解析URL"><span class="toc-nav-text">浏览器先要解析URL</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#省略文件名的情况"><span class="toc-nav-text">省略文件名的情况</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#HTTP的基本思路"><span class="toc-nav-text">HTTP的基本思路</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#生成HTTP请求消息-2"><span class="toc-nav-text">生成HTTP请求消息</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#向DNS服务器查询Web服务器的IP地址-1"><span class="toc-nav-text">向DNS服务器查询Web服务器的IP地址</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Socket库提供查询IP地址的功能"><span class="toc-nav-text">Socket库提供查询IP地址的功能</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#通过解析器向DNS服务器发出查询"><span class="toc-nav-text">通过解析器向DNS服务器发出查询</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#解析器的内部原理"><span class="toc-nav-text">解析器的内部原理</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#全世界DNS服务器的大接力-1"><span class="toc-nav-text">全世界DNS服务器的大接力</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DNS服务器的基本工作"><span class="toc-nav-text">DNS服务器的基本工作</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#域名的层次结构"><span class="toc-nav-text">域名的层次结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#寻找相应的DNS服务器并获取IP地址"><span class="toc-nav-text">寻找相应的DNS服务器并获取IP地址</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#通过缓存加快DNS服务器的响应"><span class="toc-nav-text">通过缓存加快DNS服务器的响应</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#委托协议栈发送消息-1"><span class="toc-nav-text">委托协议栈发送消息</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据收发操作概览"><span class="toc-nav-text">数据收发操作概览</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建套接字阶段"><span class="toc-nav-text">创建套接字阶段</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#连接阶段：把管道接上去"><span class="toc-nav-text">连接阶段：把管道接上去</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#通信阶段：传递消息"><span class="toc-nav-text">通信阶段：传递消息</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#断开阶段：收发数据结束"><span class="toc-nav-text">断开阶段：收发数据结束</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#专业名词"><span class="toc-nav-text">专业名词</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#URL"><span class="toc-nav-text">URL</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#FTP"><span class="toc-nav-text">FTP</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#HTTP"><span class="toc-nav-text">HTTP</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#URI"><span class="toc-nav-text">URI</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#DNS"><span class="toc-nav-text">DNS</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#socket"><span class="toc-nav-text">socket</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Socket库"><span class="toc-nav-text">Socket库</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#套接字"><span class="toc-nav-text">套接字</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#协议栈"><span class="toc-nav-text">协议栈</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#邮件服务器优先级"><span class="toc-nav-text">邮件服务器优先级</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UDP"><span class="toc-nav-text">UDP</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/12/21/Network-Chapter1/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "（读书笔记）网络是怎样连接的——浏览器生成消息",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
