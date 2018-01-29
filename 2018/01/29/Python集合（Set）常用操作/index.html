@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Python集合（Set）常用操作 | Hexo
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hexo</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Python集合（Set）常用操作</h2>
+  <p class="post-date">2018-01-29</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>set是一个无序且不重复的元素集合。<br>集合对象是一组无序排列可哈希的值，集合成员可以做字典中的键。集合用<code>in</code>和<code>not in</code>操作符检查成员，以<code>len()</code>內建函数得到集合的基数（大小），用<code>for</code>循环迭代集合的成员。但是因为集合本身是无序的，不可以为集合创建索引或执行切片(slice)操作，也没有键(keys)可用来获取集合中元素的值。<br>set和dict一样，只是没有value，相当于dict的key集合，由于dict的key是不重复的，且key是不可变对象因此set也有如下特性：</p>
+<ol>
+<li>不重复</li>
+<li>元素为不可变对象</li>
+</ol>
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><p>先初始化再赋值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = set()</span><br><span class="line">s = &#123;<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>&#125;  <span class="comment">#注意在创建空集合的时候只能使用s=set()，因为s=&#123;&#125;创建的是空字典</span></span><br></pre></td></tr></table></figure>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><p>直接创建</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=set(<span class="string">'boy'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d=&#123;<span class="string">'k1'</span>,<span class="string">'k2'</span>,<span class="string">'k2'</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方式三"><a href="#方式三" class="headerlink" title="方式三"></a>方式三</h3><p>利用list创建</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b=set([<span class="string">'y'</span>, <span class="string">'b'</span>, <span class="string">'o'</span>,<span class="string">'o'</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="方式四"><a href="#方式四" class="headerlink" title="方式四"></a>方式四</h3><p>利用dict创建，将会使用dict中的key值作为set的值</p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c=set(&#123;<span class="string">"k1"</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>&#125;)</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;k1&apos;, &apos;k2&apos;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方式五"><a href="#方式五" class="headerlink" title="方式五"></a>方式五</h3><p>使用tuple创建</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e=&#123;(<span class="string">'k1'</span>, <span class="string">'k2'</span>,<span class="string">'k2'</span>)&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="更新（增加）"><a href="#更新（增加）" class="headerlink" title="更新（增加）"></a>更新（增加）</h3><p><code>update</code></p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">se = &#123;<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>&#125;</span><br><span class="line">be = &#123;<span class="number">22</span>,<span class="number">44</span>,<span class="number">55</span>&#125;</span><br><span class="line"></span><br><span class="line">se.update(be)  <span class="comment"># 把se和be合并，得出的值覆盖se</span></span><br><span class="line">print(se)</span><br><span class="line">se.update([<span class="number">66</span>, <span class="number">77</span>])  <span class="comment"># 可增加迭代项</span></span><br><span class="line">print(se)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;33, 22, 55, 11, 44&#125;</span><br><span class="line">&#123;33, 66, 22, 55, 11, 44, 77&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p><code>discard()</code>、<code>remove()</code>、<code>pop()</code></p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">se = &#123;<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>&#125;</span><br><span class="line">se.discard(<span class="number">11</span>)</span><br><span class="line">se.discard(<span class="number">44</span>)  <span class="comment"># 移除不存的元素不会报错</span></span><br><span class="line">print(se)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;33, 22&#125;</span><br></pre></td></tr></table></figure>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">se = &#123;<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>&#125;</span><br><span class="line">se.remove(<span class="number">11</span>)</span><br><span class="line">se.remove(<span class="number">44</span>)  <span class="comment"># 移除不存的元素会报错</span></span><br><span class="line">print(se)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">KeyError                                  Traceback (most recent call last)</span><br><span class="line"></span><br><span class="line">&lt;ipython-input-15-7256c38824cb&gt; in &lt;module&gt;()</span><br><span class="line">      1 se = &#123;11, 22, 33&#125;</span><br><span class="line">      2 se.remove(11)</span><br><span class="line">----&gt; 3 se.remove(44)  # 移除不存的元素会报错</span><br><span class="line">      4 print(se)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">KeyError: 44</span><br></pre></td></tr></table></figure>
+<h2 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h2><h3 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h3><p><code>intersection</code>, <code>intersection_update</code>，也可以使用<code>a&amp;b</code></p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">temp1 = se.intersection(be)             <span class="comment">#取交集，赋给新值</span></span><br><span class="line">print(temp1)  <span class="comment"># 22</span></span><br><span class="line">print(se)  <span class="comment"># &#123;11, 22, 33&#125;</span></span><br><span class="line"></span><br><span class="line">temp2 = se.intersection_update(be)      <span class="comment">#取交集并更新自己</span></span><br><span class="line">print(temp2)  <span class="comment"># None</span></span><br><span class="line">print(se)  <span class="comment"># 22</span></span><br><span class="line">print(se&amp;be)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;22&#125;</span><br><span class="line">&#123;22&#125;</span><br><span class="line">None</span><br><span class="line">&#123;22&#125;</span><br><span class="line">&#123;22&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h3><p><code>union</code>，也可以使用<code>a|b</code></p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">se = &#123;<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>&#125;</span><br><span class="line">be = &#123;<span class="number">22</span>,<span class="number">44</span>,<span class="number">55</span>&#125;</span><br><span class="line"></span><br><span class="line">temp=se.union(be)   <span class="comment">#取并集，并赋新值</span></span><br><span class="line">print(se)       <span class="comment">#&#123;33, 11, 22&#125;</span></span><br><span class="line">print(temp)     <span class="comment">#&#123;33, 22, 55, 11, 44&#125;</span></span><br><span class="line">print(se|be)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;33, 11, 22&#125;</span><br><span class="line">&#123;33, 22, 55, 11, 44&#125;</span><br><span class="line">&#123;33, 22, 55, 11, 44&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h3><p><code>difference</code>, <code>difference_update</code>，也可以使用<code>a-b</code></p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">se = &#123;<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>&#125;</span><br><span class="line">be = &#123;<span class="number">22</span>, <span class="number">55</span>&#125;</span><br><span class="line">temp1 = se.difference(be)        <span class="comment">#找到se中存在，be中不存在的集合，返回新值</span></span><br><span class="line">print(temp1)        <span class="comment">#&#123;33, 11&#125;</span></span><br><span class="line">print(se-be)</span><br><span class="line">print(se)        <span class="comment">#&#123;33, 11, 22&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;33, 11&#125;</span><br><span class="line">&#123;33, 11&#125;</span><br><span class="line">&#123;33, 11, 22&#125;</span><br></pre></td></tr></table></figure>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp2 = se.difference_update(be) <span class="comment">#找到se中存在，be中不存在的集合，覆盖掉se</span></span><br><span class="line">print(temp2)        <span class="comment">#None</span></span><br><span class="line">print(se)           <span class="comment">#&#123;33, 11&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">None</span><br><span class="line">&#123;33, 11&#125;</span><br></pre></td></tr></table></figure>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">se = &#123;<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>&#125;  <span class="comment"># 移除末尾元素并把移除的元素赋给新值</span></span><br><span class="line">temp = se.pop()</span><br><span class="line">print(temp)  <span class="comment"># 33</span></span><br><span class="line">print(se) <span class="comment"># &#123;11, 22&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">33</span><br><span class="line">&#123;11, 22&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="包含关系"><a href="#包含关系" class="headerlink" title="包含关系"></a>包含关系</h2><p>两个集合之间一般有三种关系，相交、包含、不相交。在Python中分别用下面的方法判断：</p>
+<ul>
+<li><code>set.isdisjoint(s)</code>：判断两个集合是不是不相交</li>
+<li><code>set.issuperset(s)</code>：判断集合是不是包含其他集合，等同于<code>a&gt;=b</code></li>
+<li><code>set.issubset(s)</code>：判断集合是不是被其他集合包含，等同于<code>a&lt;=b</code></li>
+</ul>
+<p>如果要真包含关系，就用符号操作<code>&gt;</code>和<code>&lt;</code></p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">se = &#123;<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>&#125;</span><br><span class="line">be = &#123;<span class="number">22</span>&#125;</span><br><span class="line"></span><br><span class="line">print(se.isdisjoint(be))        <span class="comment">#False，判断是否不存在交集（有交集False，无交集True）</span></span><br><span class="line">print(se.issubset(be))          <span class="comment">#False，判断se是否是be的子集合</span></span><br><span class="line">print(se &lt;= be)</span><br><span class="line">print(se.issuperset(be))        <span class="comment">#True，判断se是否是be的父集合</span></span><br><span class="line">print(se &gt;= be)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">False</span><br><span class="line">False</span><br><span class="line">False</span><br><span class="line">True</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<h2 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h2><p><code>symmetric_difference</code>, <code>symmetric_difference_update</code></p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">se = &#123;<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>&#125;</span><br><span class="line">be = &#123;<span class="number">22</span>&#125;</span><br><span class="line"></span><br><span class="line">temp1 = se.symmetric_difference(be)  <span class="comment"># 合并不同项，并赋新值</span></span><br><span class="line">print(temp1)    <span class="comment">#&#123;33, 11&#125;</span></span><br><span class="line">print(se)       <span class="comment">#&#123;33, 11, 22&#125;</span></span><br><span class="line"></span><br><span class="line">temp2 = se.symmetric_difference_update(be)  <span class="comment"># 合并不同项，并更新自己</span></span><br><span class="line">print(temp2)    <span class="comment">#None</span></span><br><span class="line">print(se)             <span class="comment">#&#123;33, 11&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;33, 11&#125;</span><br><span class="line">&#123;33, 11, 22&#125;</span><br><span class="line">None</span><br><span class="line">&#123;33, 11&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="集合的转换"><a href="#集合的转换" class="headerlink" title="集合的转换"></a>集合的转换</h2><p>集合可以转换为list，tuple以及str</p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">se = set(range(<span class="number">4</span>))</span><br><span class="line">li = list(se)</span><br><span class="line">tu = tuple(se)</span><br><span class="line">st = str(se)</span><br><span class="line">print(li,type(li))</span><br><span class="line">print(tu,type(tu))</span><br><span class="line">print(st,type(st))</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[0, 1, 2, 3] &lt;class &apos;list&apos;&gt;</span><br><span class="line">(0, 1, 2, 3) &lt;class &apos;tuple&apos;&gt;</span><br><span class="line">&#123;0, 1, 2, 3&#125; &lt;class &apos;str&apos;&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="不变集合"><a href="#不变集合" class="headerlink" title="不变集合"></a>不变集合</h2><p>Python提供了不能改变元素的集合的实现版本，即不能增加或删除元素，类型名叫frozenset，使用方法如下</p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = frozenset(<span class="string">"hello"</span>)</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frozenset(&#123;&apos;e&apos;, &apos;h&apos;, &apos;l&apos;, &apos;o&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>需要注意的是frozenset仍然可以进行集合操作，只是不能用带有update的方法。如果要一个有frozenset中的所有元素的普通集合，只需把它当作参数传入集合的构造函数中即可：</p>
+<p>Input:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = frozenset(<span class="string">"hello"</span>)</span><br><span class="line">a = set(a)</span><br><span class="line">a.add(<span class="number">12</span>)</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;12, &apos;e&apos;, &apos;h&apos;, &apos;l&apos;, &apos;o&apos;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://blog.csdn.net/u013291394/article/details/50371760" target="_blank" rel="noopener">每天学点Python之set - CSDN博客</a><br><a href="https://www.cnblogs.com/whatisfantasy/p/5956775.html" target="_blank" rel="noopener">Python基本数据类型之set - morra - 博客园</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Python" >
+    <span class="tag-code">Python</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#定义"><span class="toc-nav-text">定义</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#创建"><span class="toc-nav-text">创建</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方式一"><span class="toc-nav-text">方式一</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方式二"><span class="toc-nav-text">方式二</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方式三"><span class="toc-nav-text">方式三</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方式四"><span class="toc-nav-text">方式四</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方式五"><span class="toc-nav-text">方式五</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#更新（增加）"><span class="toc-nav-text">更新（增加）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#删除"><span class="toc-nav-text">删除</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#集合操作"><span class="toc-nav-text">集合操作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#交集"><span class="toc-nav-text">交集</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#并集"><span class="toc-nav-text">并集</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#差集"><span class="toc-nav-text">差集</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#包含关系"><span class="toc-nav-text">包含关系</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#合并"><span class="toc-nav-text">合并</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#集合的转换"><span class="toc-nav-text">集合的转换</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#不变集合"><span class="toc-nav-text">不变集合</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参考文章"><span class="toc-nav-text">参考文章</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2018/01/29/Python集合（Set）常用操作/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Python集合（Set）常用操作",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
