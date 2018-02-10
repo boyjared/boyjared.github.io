@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="boyJared&#39;s blog">
+  <meta name="keyword" content="Python">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      （读后笔记）颠覆式前端开发框架React | BoyJared
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>BoyJared</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>（读后笔记）颠覆式前端开发框架React</h2>
+  <p class="post-date">2017-07-04</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="React的开发目的"><a href="#React的开发目的" class="headerlink" title="React的开发目的"></a>React的开发目的</h2><blockquote>
+<p> 按官网描述，用于开发数据不断变化的大型应用程序</p>
+</blockquote>
+<p>为什么React适用于开发数据不断变化的大型应用程序呢，那就要从Web开发的性能瓶颈和React的原理开始说起。</p>
+<h2 id="Web开发的性能瓶颈"><a href="#Web开发的性能瓶颈" class="headerlink" title="Web开发的性能瓶颈"></a>Web开发的性能瓶颈</h2><p>在Web开发中，我们需要将不断变化的数据实时显示在UI上，这种时候就要对DOM进行操作。而复杂频繁的DOM操作就是产生Web性能瓶颈的重要原因。</p>
+<h2 id="React的原理"><a href="#React的原理" class="headerlink" title="React的原理"></a>React的原理</h2><p>React为了解决以上瓶颈，引入了<strong>虚拟DOM</strong>，这也是React最为重要的核心机制之一。React利用对虚拟DOM来减少对实际DOM的操作从而提升性能。由于虚拟DOM是在<strong>内存</strong>中创建的，因此性能极高。每一次的数据更新，React都会刷新整个页面。</p>
+<p>这样还带来了另外一个好处，就是开发者们不用关心数据是怎么变化的，只需要知道每一次页面渲染对应的整体数据是什么就好了。而在传统的Web前端开发思路上，开发者们需要知道哪些数据是新的，如何将新的DOM节点添加到当前的DOM树上。</p>
+<p>因此，在React的开发中，<strong>你永远只需要关心整体数据</strong>，至于如何进行局部更新以提高效率，那是React框架要做的事情。</p>
+<h2 id="组件化的开发思路"><a href="#组件化的开发思路" class="headerlink" title="组件化的开发思路"></a>组件化的开发思路</h2><p>在虚拟DOM的基础之上就衍生出了React组件化的开发思路。</p>
+<blockquote>
+<p>所谓组件，即封装起来的具有独立功能的的UI部件</p>
+</blockquote>
+<p>在React构建的应用程序中，你可以将整个页面视为<strong>一个由许多的子组件构成的大组件</strong>，这样做最明显的一个好处是增加了前端代码的<strong>可重用性</strong>，一个组件能在多个UI界面中被使用。除此之外，React认为一个组件还应该具备以下<strong>三个特征</strong>：</p>
+<ol>
+<li>可组合：能够和其他组件一起使用</li>
+<li>可维护：由于每个组件只包含自己内部的逻辑，因此更容易被维护</li>
+<li>可测试：测试单个组件内部的逻辑相较于测试整体UI要更加容易</li>
+</ol>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>React接管了开发UI中最为复杂的局部更新数据的部分。同时，引入了组件化的开发思想，从另一个角度构建了前端UI界面。</p>
+<p>原文：<a href="http://www.infoq.com/cn/articles/subversion-front-end-ui-development-framework-react" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/subversion-front-end-ui-development-framework-react</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#前端" >
+    <span class="tag-code">前端</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#React的开发目的"><span class="toc-nav-text">React的开发目的</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Web开发的性能瓶颈"><span class="toc-nav-text">Web开发的性能瓶颈</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#React的原理"><span class="toc-nav-text">React的原理</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#组件化的开发思路"><span class="toc-nav-text">组件化的开发思路</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#结论"><span class="toc-nav-text">结论</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/07/04/react-1/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "boyjared";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "（读后笔记）颠覆式前端开发框架React",
+        owner: "boyjared",
+        repo: "boyjared.github.io",
+        oauth: {
+          client_id: "469cfac912e0b47be29d",
+          client_secret: "6b3a7a7d6a54ade9f6618158f1fe97994351f368"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

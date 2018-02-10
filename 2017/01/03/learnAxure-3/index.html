@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="boyJared&#39;s blog">
+  <meta name="keyword" content="Python">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Axure RP8学习笔记三（实现简单的弹窗效果） | BoyJared
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>BoyJared</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Axure RP8学习笔记三（实现简单的弹窗效果）</h2>
+  <p class="post-date">2017-01-03</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>首先还是得祝大家二〇一七新年快乐啦，本来是想在元旦的时候写的，咳，反正就拖到今天啦。这也是我二〇一七写的第一篇文章，就和大家分享一个很简单的小实例教程吧，当然可能很多地方都会用到，就是<strong>用Axure实现一个简单的弹窗效果</strong>。核心思路的话就是使用<strong>动态面板</strong>。</p>
+<h1 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h1><p>这里就简单模拟一个修改密码然后需要弹窗提示的场景吧。可能有些丑然后文案逻辑都有些随意各位看官不要太介意。输入<code>原密码</code>，<code>新密码</code>和<code>确认密码</code>后点击确定修改，然后弹出一个<strong>确定修改的对话框</strong>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-3182c065e0a7500d.gif?imageMogr2/auto-orient/strip" alt="弹窗效果演示.gif"></p>
+<h1 id="核心思路"><a href="#核心思路" class="headerlink" title="核心思路"></a>核心思路</h1><ol>
+<li>由于我们需要在点击事件之后在原有页面上展示出一个原来没有的对话框，所以我们需要使用一个<strong>动态面板</strong>。</li>
+<li>动态面板只有一个状态<code>State1</code>，我们将对话框的样式设定好，然后放在动态面板的<code>State1</code>状态中。</li>
+<li>将动态面板的初始状态设置为<strong>不可见</strong>。然后再给相应的按钮添加点击事件，点击将动态面板的状态设置为<strong>可见</strong>。</li>
+</ol>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>我们需要准备三个<strong>输入框</strong>以及两个<strong>按钮</strong>，然后为它们命好名编好组，为自己的元件规范命名还有编组是个蛮重要的习惯。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-71094ef8bca82899.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="准备工作.png"></p>
+<h1 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h1><p>首先我们需要添加一个<strong>动态面板</strong>，由于该动态面板是要显示对话框的，我们就叫它对话框动态面板好了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-3cace7642833df4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="步骤一、添加对话框动态面板.png"></p>
+<h1 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h1><p>双击该动态面板，设置该动态面板的<code>State1</code>状态，添加相应的提示文字以及按钮，然后稍微调整下样式。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-aaf3e587e90e4c70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="步骤二、设置动态面板的State1状态.png"></p>
+<h1 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h1><p>回到我们的主页面，选中动态面板，在样式(STYLE)下将动态面板的初始状态设置为不可见(hidden)。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-486fd2b48bea11a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="步骤三、设置动态面板的初始状态为hidden.png"></p>
+<h1 id="步骤四"><a href="#步骤四" class="headerlink" title="步骤四"></a>步骤四</h1><p>给<strong>确认修改的按钮</strong>添加点击(click)事件，点击事件的内容为将动态面板设置为可见。然后可以在更多选择(More Options)里面可以设置一个灯箱效果(treat as lightbox)的效果，可以使弹窗的效果好些。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-81dbf7b2ad65a8f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="步骤四、设置动态面板为可见.png"></p>
+<p>这样完成之后其实弹窗效果就已经完成了，点击右上角的预览(preview)按钮看一下效果吧。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-c454ef427cf0ef64.gif?imageMogr2/auto-orient/strip" alt="实现的弹窗效果.gif"></p>
+<h1 id="步骤五"><a href="#步骤五" class="headerlink" title="步骤五"></a>步骤五</h1><p>但仔细观察一下还稍微有点小瑕疵，我们的弹窗还没有方法可以关闭。那为了关闭弹窗我们就再多做一步吧。双击<strong>动态面板</strong>，重新编辑动态面的<code>State1</code>状态，设置<strong>取消按钮</strong>的点击事件，点击事件的内容为将动态面板设置为不可见。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-ac5df74b1d9f1ccc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="步骤五、设置取消按钮的点击事件.png"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>完成后的效果如下图所示，这个案例也比较简单，但是能够应用到的地方还是蛮多的。主要是利用了动态面板的隐藏以及出现的属性。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-cd1cb1d5beccbace.gif?imageMogr2/auto-orient/strip" alt="出现弹窗后取消的效果.gif"></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#产品" >
+    <span class="tag-code">产品</span>
+  </a>
+
+  <a href="/tags#Axure" >
+    <span class="tag-code">Axure</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#概述"><span class="toc-nav-text">概述</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#实现效果"><span class="toc-nav-text">实现效果</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#核心思路"><span class="toc-nav-text">核心思路</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#准备工作"><span class="toc-nav-text">准备工作</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#步骤一"><span class="toc-nav-text">步骤一</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#步骤二"><span class="toc-nav-text">步骤二</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#步骤三"><span class="toc-nav-text">步骤三</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#步骤四"><span class="toc-nav-text">步骤四</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#步骤五"><span class="toc-nav-text">步骤五</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#总结"><span class="toc-nav-text">总结</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/01/03/learnAxure-3/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "boyjared";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Axure RP8学习笔记三（实现简单的弹窗效果）",
+        owner: "boyjared",
+        repo: "boyjared.github.io",
+        oauth: {
+          client_id: "469cfac912e0b47be29d",
+          client_secret: "6b3a7a7d6a54ade9f6618158f1fe97994351f368"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

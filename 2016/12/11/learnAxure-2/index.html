@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="boyJared&#39;s blog">
+  <meta name="keyword" content="Python">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Axure RP8 学习笔记二（实现移动端页面拖动效果） | BoyJared
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>BoyJared</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Axure RP8 学习笔记二（实现移动端页面拖动效果）</h2>
+  <p class="post-date">2016-12-11</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>距离上一篇更新也过去了比较久的时间，因为公司最近一段时间的核心业务在于推广，因此自己也会时不时跳出产品参与到推广工作中来，再回到产品中来也有了不同的认识。因此最近这段时间的文章就简单介绍下自己在近期利用Axure实现的一些简单的功能以及实现方法。本篇是介绍<strong>利用Axure实现移动端页面的拖动效果</strong>。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>我们在用Axure实现网页端页面原型设计时我们往往不用太担心一个网页的页面很多很长怎么办，因为到时候预览原型的时候我们只需要用鼠标滚轮滚动便可以查看原型的全部内容而不用担心它的显示效果。</p>
+<p>而当涉及到移动端原型设计的时候，就没有这么简单了。当我们想要<strong>在一个固定高度的手机壳中展示很多的内容</strong>的时候，如果碰到简单粗暴的设计者，那我们的设计图往往会变成下面这样。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-15d3ad8b2f535beb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="粗暴的原型图"></p>
+<p>固定高度的手机壳里需要放很多的内容，于是我们就把手机壳一拉伸就好了。这很粗暴，能解决问题，但却不那么美观。如果能像我们真实使用手机一样<strong>在一个固定高度的手机壳里用鼠标拖动页面</strong>就好了。就像下面这样的效果。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-dbc3ace2fd1f1787.gif?imageMogr2/auto-orient/strip" alt="能拖动的原型图"></p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>我想这样的问题应该很常见，所以相信Axure必然是有提供解决方案的。搜索后发现解决方法还是有很多的，我也参考了一些资料，就自己所采用的方法的操作步骤做一个简单介绍。</p>
+<h2 id="核心思路"><a href="#核心思路" class="headerlink" title="核心思路"></a>核心思路</h2><ol>
+<li>移动端显示的页面是固定尺寸的，因此我们需要使用一个<strong>动态面板</strong>，使它展示固定高度的内容。</li>
+<li>我们需要展示的页面的高度是超长的，因此我们需要把这个页面放到第一点所提及到的动态面板中。</li>
+<li>由于需要展示的页面需要能被拖动，所以整个超长的页面也需要是一个<strong>动态面板</strong>。</li>
+<li>所以整体的实现方案是一个<strong>固定高度的动态面板</strong>中嵌套了一个<strong>包含整体展示页面的动态面板</strong>。</li>
+<li>我们拖拽移动端的页面的时候，如果一直往下拖动直到脱离顶部再松手的时候，它一般会“弹”回到最上面的位置。同理，如果一直往上拖动直到脱离底部的话，它也会“弹”回到最下面的位置。所以我们需要设置离开顶部或底部时，自动返回原位的交互。</li>
+</ol>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>我们需要准备一个<strong>固定高度的iPhone手机素材</strong>，一个<strong>顶部导航栏</strong>以及一个<strong>底部导航栏</strong>。这是基本的手机app的结构。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-6ac5f04b0a8d361d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="准备工作"></p>
+<h2 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h2><p>我们需要添加一个固定高度的<strong>动态面板</strong>，这个面板相当于我们的屏幕，因此取名为<strong>「固定页面」</strong>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-1bffc7d08e7252b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加固定页面的动态面板"></p>
+<h2 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h2><p>编辑这个动态面板的State1状态，在State1状态中再添加一个动态面板，这个动态面板就需要展示所有的内容，我们就命名为<strong>「展示内容」</strong>，所以它的高度会超过<strong>「固定页面」</strong>这个动态面板的高度。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-6b22e60b3d86c690.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加展示内容的动态面板"></p>
+<h2 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h2><p>编辑展示内容这个动态面板的State1状态，然后在编辑页面中添加好相应的展示内容。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-64b1f1986bcef950.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加展示的内容"></p>
+<h2 id="步骤四"><a href="#步骤四" class="headerlink" title="步骤四"></a>步骤四</h2><p>在做好了上述的工作之后我们会发现手机的屏幕不足以展示所有的内容，所以我们接下来需要为我们的原型添加拖动事件。<br>首先为<strong>「固定页面」</strong>这个动态面板添加<strong>拖动事件</strong>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-7e86fc2a93eb6b02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="为固定页面添加拖动事件"></p>
+<p>这样的四步完成之后，我们的展示内容已经可以进行拖动了，只是和手机上的真实体验还有些差距，<strong>离开顶部或底部后并不会回到相应的位置</strong>，我们接下来需要对其进行优化。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-0bef372bad887ea2.gif?imageMogr2/auto-orient/strip" alt="拖动手机屏幕"></p>
+<h2 id="步骤五"><a href="#步骤五" class="headerlink" title="步骤五"></a>步骤五</h2><p>为页面添加离开顶部或底部后，松开拖拽后自动恢复到正确位置的效果。</p>
+<p>首先需要为<strong>「固定页面」</strong>这个动态面板添加拖拽施放(OnDragDrop)事件，并且设置这个事件发生的条件，如下图所示。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-62403284a9284fc8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="为固定页面添加拖动释放事件"></p>
+<p>接下来则是为这个事件添加相应的执行结果，需要将<strong>「展示内容」</strong>这个动态面板恢复到相应的位置。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-9dfe9fca6ba0b34a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="展示内容恢复到正确位置"></p>
+<p>这样子设置完成之后当我们拖拽页面脱离顶部导航栏的时候页面已经能够自动回复到正确位置。展示效果如下图所示。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-bffd213ca5b93736.gif?imageMogr2/auto-orient/strip" alt="拖动后回顶部原位"></p>
+<h2 id="步骤六"><a href="#步骤六" class="headerlink" title="步骤六"></a>步骤六</h2><p>接下来需要设置拖拽页面脱离底部导航栏的时候页面自动回复到正确的位置。设置的原理和上面的相似。</p>
+<p>设置相应事件的条件</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-5a142a47e6723af0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置展示内容动态面板条件"></p>
+<p>设置相应事件触发的结果，值得一提的是，-115为「固定页面」这个动态面板的高度减去「展示内容」这个动态面板的高度，我这里为316-431 = -115。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-43f52bab086726ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置回到底部"></p>
+<h2 id="步骤七"><a href="#步骤七" class="headerlink" title="步骤七"></a>步骤七</h2><p>非常细节的一小步，需要右键点击Case2，将<code>Else If</code>转换为<code>If</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-4220025d8e5170cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="切换Else If为If"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>完成之后的Axure面板设置大概是下图这样子。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-4e6a0475576b5f7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="完成之后"></p>
+<p>实现的效果如下图所示。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-88ebba0cef89dd43.gif?imageMogr2/auto-orient/strip" alt="效果展示"></p>
+<h2 id="个人感触"><a href="#个人感触" class="headerlink" title="个人感触"></a>个人感触</h2><p>这只是一个利用Axure实现了一个很简单的功能，也就是<strong>移动端页面的拖动效果</strong>，在实现过程中用到了动态面板，也利用到了一些基本事件的设置，包括条件的设置等等。我想虽然实现的功能并不复杂，但对于初学者来说这也是一个比较好的实战案例。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://blog.sina.com.cn/s/blog_5a568eec0102w7t3.html" target="_blank" rel="noopener">如何用Axure实现移动端页面拖动效果</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#产品" >
+    <span class="tag-code">产品</span>
+  </a>
+
+  <a href="/tags#Axure" >
+    <span class="tag-code">Axure</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#概述"><span class="toc-nav-text">概述</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#问题描述"><span class="toc-nav-text">问题描述</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#解决方案"><span class="toc-nav-text">解决方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#核心思路"><span class="toc-nav-text">核心思路</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#准备工作"><span class="toc-nav-text">准备工作</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#步骤一"><span class="toc-nav-text">步骤一</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#步骤二"><span class="toc-nav-text">步骤二</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#步骤三"><span class="toc-nav-text">步骤三</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#步骤四"><span class="toc-nav-text">步骤四</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#步骤五"><span class="toc-nav-text">步骤五</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#步骤六"><span class="toc-nav-text">步骤六</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#步骤七"><span class="toc-nav-text">步骤七</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#总结"><span class="toc-nav-text">总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#个人感触"><span class="toc-nav-text">个人感触</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2016/12/11/learnAxure-2/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "boyjared";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Axure RP8 学习笔记二（实现移动端页面拖动效果）",
+        owner: "boyjared",
+        repo: "boyjared.github.io",
+        oauth: {
+          client_id: "469cfac912e0b47be29d",
+          client_secret: "6b3a7a7d6a54ade9f6618158f1fe97994351f368"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

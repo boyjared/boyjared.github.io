@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="boyJared&#39;s blog">
+  <meta name="keyword" content="Python">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      App每日体验 Day1 | Todolist | BoyJared
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>BoyJared</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>App每日体验 Day1 | Todolist</h2>
+  <p class="post-date">2017-07-15</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近这段时间公司在做一个App的项目，这也是我们第一次从0到1去构想并实现一个App。项目临近上线，但在最近的一次开会时我们却发现虽然App实现了初期规划时的绝大部分功能，但在用户体验上却非常不尽如人意。</p>
+<p>很多较为复杂的功能缺乏基本的提示，用户第一次使用可能会有些不知所措；同时一些我们希望用户去使用的功能也缺少我们的主观引导；另外App也缺乏情感化设计，最明显的就是许多地方文字都十分生硬。</p>
+<p>因为项目还没上线，所以具体缺陷在这里也就不展开分析啦。我们产品团队在会议室了闷了几乎一天，然后整理出了两页word的修改意见。UI小哥在一天内就把App中一个重要模块的UI进行了优化。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-40edb1c1e5c93f3e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="UI小哥优化"></p>
+<p>亡羊补牢过后，老板说初期设计的时候没考虑到那这锅你们谁背？大家纷纷踊跃接锅。</p>
+<p>不过我也在思考，作为一个初期的产品经理，在参加工作以来的这段时间，确实看别人的产品并且学习别人的产品这样的事情做得不够多。</p>
+<p>做得不够多那就开始弥补呗。我在想那就一天体验一个App吧！我希望能至少用心地体验一些App。那主要去看它们的什么方面呢？我想主要是下面这些：</p>
+<ul>
+<li>App设计中经常会遇到的部分，比如登录注册，比如列表，比如个人中心。经常遇到的版块更容易对比和学习；</li>
+<li>每个App里用户体验好的部分。这就很模糊了，能吸引到人就算好的。</li>
+</ul>
+<p>但其实保证每天都要做一件事情真的很困难并且有时候会有些煎熬，所以我希望目标定小一点，自己能持续做这样的事情就好了。</p>
+<p>好了，铺垫得也够多了，那么进入正题吧。我挑的第一个App是Todolist。</p>
+<h2 id="Todolist"><a href="#Todolist" class="headerlink" title="Todolist"></a>Todolist</h2><p>顾名思义，Todolist就是一款待<strong>办事项列表软件</strong>。目前这样的产品很多，比如还有奇妙清单等，我们看看这款App有什么不一样。</p>
+<p>因为我的目的不是介绍App，所以下面就只讲我觉得值得借鉴的地方。</p>
+<h3 id="登录注册"><a href="#登录注册" class="headerlink" title="登录注册"></a>登录注册</h3><p><img src="http://upload-images.jianshu.io/upload_images/1410361-5769e7c9cdeb75e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录注册流程"><br>现在的App基本都会有引导页，而Todolist则是将<strong>引导页</strong>和<strong>注册登录页</strong>结合到了一起。注册方式则是提供了Google、Facebook以及电子邮箱三种方式。对应到国内的App就是大概就是提供微信登录、QQ登录以及手机号注册这样三种方式吧。</p>
+<p>在这里我选择了使用电子邮件继续，然后它会让我先填电子邮箱，点击按钮之后再进入下个页面完善用户名称以及密码。许多国内的App的注册流程也是在第一个页面先验证用户手机号，在第二个页面再让用户完善密码以及昵称等信息。</p>
+<p>做法是一样的，但其实我个人不是很理解这样做的好处，换种角度看，其实明明一个页面就都能收集好这些信息。也希望有前辈能帮忙解个惑。</p>
+<h3 id="空白页提示"><a href="#空白页提示" class="headerlink" title="空白页提示"></a>空白页提示</h3><p><img src="http://upload-images.jianshu.io/upload_images/1410361-6a5a3225bb2ebb9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="空白页提示"></p>
+<p>有些时候某些页面会出现没有数据的情况，在这种时候肯定不能什么都不显示。拿上面这个页面来讲，至少你要告诉用户“当前尚无通知”。如果是我做，我可能就只会写“当前尚无通知”。但是更好的做法就是上面这样，你再告诉用户什么时候这边会有数据，“就是在您的共享任务被修改时，您将会在第一时间收到通知”。然后文字下方还有一个按钮，引导用户去观看一段介绍视频。</p>
+<p><strong>其实在空白页，我们应该做的不仅仅是提示，还有引导。</strong></p>
+<h3 id="输入提示"><a href="#输入提示" class="headerlink" title="输入提示"></a>输入提示</h3><p><img src="http://upload-images.jianshu.io/upload_images/1410361-cad17b359ff26b22.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="输入提示"></p>
+<p>这个页面是<strong>新建一条代办事项</strong>。我觉得比较出彩的地方是输入框的提示文字。还是拿我自己对比，我的做法可能会是，“输入你的待办事项”。但这里是“例如，每天晚上8点读一个章节的书”。用这简单的几个字就做好了用户引导。告诉了用户作为软件设计者我们希望他们在这里输入怎样的内容。</p>
+<p>我自己作为一个只是想要试玩这个App的人，如果没有这段提示文字我可能就会简单地随便输入一些内容。但是实际情况是我就按照提示文字上的内容输入了“每天晚上8点读一个章节的书”。然后我就发现了它会自动识别到我输入的“每天晚上8点”这个关于时间的关键字，然后就把我这个任务设置成了每天晚上的一个循环任务。一个在提示文字上做的小心思，就让我知道了这个App智能化的地方。</p>
+<h3 id="输入框"><a href="#输入框" class="headerlink" title="输入框"></a>输入框</h3><p><img src="http://upload-images.jianshu.io/upload_images/1410361-b8de2d6c5e70054b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="输入框"></p>
+<p>我自己一般设计输入框时的思路是在输入框右边会有一个右箭头，点击进另外一个页面对这个输入框的内容进行修改。</p>
+<p>但Todolist的做法是，点击这个输入框，就能直接在这个页面进行内容的修改。然后顶部栏的左边和右边变成了取消和完成，更为细节的是，如果没有修改内容，则这个完成按钮是灰色的。对于简单的内容修改来说，这样显然更加直观和简单。</p>
+<h3 id="弹窗"><a href="#弹窗" class="headerlink" title="弹窗"></a>弹窗</h3><p><img src="http://upload-images.jianshu.io/upload_images/1410361-0ae76e08822d5803.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="弹窗"></p>
+<p>这个弹窗我就是觉得样子还蛮好看的。然后按钮是上下分布的我也觉得挺好，虽然这种按钮上下分布的弹窗很多见，但我自己并没有太注意以致于我自己现在在设计弹窗时总是习惯性把按钮设计成左右分布，然后按钮总是一样大，样式也是一样，非常普通。其实最简单的做法，按钮的颜色也应该有所不同，我们希望用户去点击的那个按钮颜色至少应该更醒目。另外，通过这个弹窗做到了往App收费方面引导，也是一个值得借鉴的点。</p>
+<h3 id="引导性提示"><a href="#引导性提示" class="headerlink" title="引导性提示"></a>引导性提示</h3><p><img src="http://upload-images.jianshu.io/upload_images/1410361-1f9a2cfad8d0676d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="引导性提示"></p>
+<p>这里又做了一个往收费的引导，我在下载App后的第二天再进入这个App在App的下方又引导我可以去体验30天的会员。也让我联想到了最近一直在使用的Hellobike，一直在宣传它的45天免费骑行卡，每次进入App总能看到。这也是一个好的引导。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1410361-71a149ccf748eb25.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Hellobike45天骑行卡"></p>
+<h3 id="用户体验"><a href="#用户体验" class="headerlink" title="用户体验"></a>用户体验</h3><p><img src="http://upload-images.jianshu.io/upload_images/1410361-65d8ab3c7fd12df5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="用户体验"></p>
+<p>在这里我点击完成了一个购买礼物的任务，然后我发现它就从这个页面中消失了，我想我大概要去别的页面找这条待办事项了。但这个时候在页面的最下方就出现了一条点击撤销的提示。我的感觉就是，诶，懂我。然后我就点击撤销，这条待办事项就回到了我的列表中。</p>
+<p>这种操作会让用户很舒服。<strong>就是你能预判到用户会想要做什么，然后给他一个便捷的操作入口</strong>。</p>
+<p>相似的做法还有，支付宝最近被广为称赞的，在和好友聊天窗口输入纯数字时会提示向该好友转账。微信在环境暗的时候扫码会提示用户点击可以打开手电筒。ios11在用户截屏后，截屏的内容会出现在屏幕左下方，可以直接点击编辑。都是属于这一类行为。</p>
+<p>当然这类设计一般需要大量分析用户的行为之后才能总结出来。</p>
+<h3 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h3><p><img src="http://upload-images.jianshu.io/upload_images/1410361-512b7c74c4c24248.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登出"></p>
+<p>只是想看看这个App的登出是什么样子，我印象里比较深刻的都是会出一个弹窗提示，但这里Todolist用了苹果原生的一个向上弹出的按钮，我觉得也还不错。多一种思路吧。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总的来说，这是一个很精致的App，从UI到功能到用户体验上都是这样。我也只是粗略地体验了一下，相信如果是一个长期的优质用户，肯定会有更多更好的发现。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#产品" >
+    <span class="tag-code">产品</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#写在前面"><span class="toc-nav-text">写在前面</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Todolist"><span class="toc-nav-text">Todolist</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#登录注册"><span class="toc-nav-text">登录注册</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#空白页提示"><span class="toc-nav-text">空白页提示</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#输入提示"><span class="toc-nav-text">输入提示</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#输入框"><span class="toc-nav-text">输入框</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#弹窗"><span class="toc-nav-text">弹窗</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#引导性提示"><span class="toc-nav-text">引导性提示</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#用户体验"><span class="toc-nav-text">用户体验</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#登出"><span class="toc-nav-text">登出</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结"><span class="toc-nav-text">总结</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/07/15/app-daily-experience-1/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "boyjared";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "App每日体验 Day1 | Todolist",
+        owner: "boyjared",
+        repo: "boyjared.github.io",
+        oauth: {
+          client_id: "469cfac912e0b47be29d",
+          client_secret: "6b3a7a7d6a54ade9f6618158f1fe97994351f368"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
